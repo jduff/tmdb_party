@@ -1,0 +1,7 @@
+= tmdb_party
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 John Duff. See LICENSE for details.
