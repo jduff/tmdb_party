@@ -32,6 +32,9 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
   transformers.categories.collect{|cat| cat.name}.include?("Adventure Film")
     # => true
 
+= what is themoviedb.org?
+It's a movie database, kind of like IMDB except it's more of a community wiki. They also have an api that they're cool with people using. More on the api here: http://api.themoviedb.org/2.0/docs/
+
 == Copyright
 
 Copyright (c) 2009 John Duff. See LICENSE for details.
