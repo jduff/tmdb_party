@@ -9,6 +9,10 @@ begin
     gem.email = "duff.john@gmail.com"
     gem.homepage = "http://github.com/jduff/tmdb_party"
     gem.authors = ["John Duff"]
+    gem.add_dependency('httparty', '>= 0.4.3')
+    
+    gem.add_development_dependency('fakeweb')
+    gem.add_development_dependency('context')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

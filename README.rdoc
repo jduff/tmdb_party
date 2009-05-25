@@ -1,6 +1,36 @@
 = tmdb_party
 
-Description goes here.
+Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) using HTTParty
+
+= usage:
+  sudo gem install jduff-tmdb_party
+  require 'tmdb_party'
+
+= example:
+
+  @tmdb = TMDBParty::Base.new('key')
+  results = @tmdb.search('transformers')
+
+  results.length
+    # => 5
+
+  transformers = results.detect{|m| m.title == "Transformers"}
+
+  transformers.popularity
+    # => 31
+  transformers.score
+    # => 1.0
+  transformers.imdb
+    # => 'tt0418279'
+
+  # some attributes don't come back with the search result, they are lazily loaded on demand
+  transformers.homepage
+    # => "http://www.transformersmovie.com/"
+  transformers.trailer.url
+    # => "http://www.youtube.com/watch?v=eduwcuq1Exg"
+
+  transformers.categories.collect{|cat| cat.name}.include?("Adventure Film")
+    # => true
 
 == Copyright
 
