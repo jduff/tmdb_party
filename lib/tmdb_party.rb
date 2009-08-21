@@ -24,7 +24,14 @@ module TMDBParty
       end
     end
     
-    def imdb_lookup(id)
+    def imdb_lookup(imdb_id)
+      data = self.class.get('/Movie.imdbLookup', :query=>{:imdb_id=>imdb_id})
+      case data['results']['moviematches']['movie']
+      when String
+        return nil
+      when Hash
+        Movie.new(data['results']['moviematches']['movie'], self)
+      end
     end
     
     def get_info(id)
