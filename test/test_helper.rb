@@ -21,7 +21,7 @@ def tmdb_url(url)
 end
  
 def stub_get(url, filename, status=nil)
-  options = {:string => fixture_file(filename)}
+  options = {:body => fixture_file(filename)}
   options.merge!({:status => status}) unless status.nil?
   
   FakeWeb.register_uri(:get, tmdb_url(url), options)
