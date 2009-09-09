@@ -5,7 +5,7 @@ module TMDBParty
     
     attributes :title, :short_overview, :id, :score, :imdb, :type, :url, :popularity, :alternative_title
     attributes :release, :type=>DateTime
-    attributes :id, :type => Integer
+    attributes :id, :runtime, :type => Integer
     attributes :popularity, :score, :type => Float
     attributes :poster, :backdrop, :type => Image
     

@@ -37,6 +37,20 @@ class TestTmdbParty < Test::Unit::TestCase
     
     category = transformers.categories.detect{|cat| cat.name == "Adventure Film"}
     assert_equal "http://www.themoviedb.org/encyclopedia/category/12", category.url
+    
+    
+    assert_equal 132, transformers.runtime
+    # assert_equal 1.0, transformers.score
+    # assert_equal 1.0, transformers.score
+    # assert_equal 1.0, transformers.score
+    # assert_equal 1.0, transformers.score
+    # assert_equal 1.0, transformers.score
+    # assert_equal 1.0, transformers.score
+    # assert_equal 1.0, transformers.score
+    
+    
+    
+    
   end
 
   test "getting a single result" do
