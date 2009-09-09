@@ -7,6 +7,7 @@ module TMDBParty
     end
     
     def self.parse(data)
+      return unless data
       if data.is_a?(Array)
         data.collect do |url|
           Video.new(url)
