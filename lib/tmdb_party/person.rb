@@ -1,20 +1,20 @@
 module TMDBParty
-  class Category
+  class Person
     include Attributes
-    attributes :name, :url
+    attributes :name, :url, :job
     
     def initialize(values)
       self.attributes = values
     end
     
     def self.parse(data)
-      data = data["category"]
+      data = data["person"]
       if data.is_a?(Array)
-        data.collect do |category|
-          Category.new(category)
+        data.collect do |person|
+          Person.new(person)
         end
       else
-        Category.new(data)
+        Person.new(data)
       end
     end
   end

@@ -40,6 +40,8 @@ class TestTmdbParty < Test::Unit::TestCase
     
     
     assert_equal 132, transformers.runtime
+    assert_equal 35, transformers.people.length
+    
     # assert_equal 1.0, transformers.score
     # assert_equal 1.0, transformers.score
     # assert_equal 1.0, transformers.score
