@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tmdb_party}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John Duff"]
-  s.date = %q{2009-09-08}
+  s.date = %q{2009-09-09}
   s.email = %q{duff.john@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -32,7 +32,10 @@ Gem::Specification.new do |s|
      "lib/tmdb_party/video.rb",
      "test/fixtures/imdb_no_results.xml",
      "test/fixtures/imdb_search.xml",
+     "test/fixtures/no_groups.xml",
+     "test/fixtures/rad.xml",
      "test/fixtures/search.xml",
+     "test/fixtures/single_groups.xml",
      "test/fixtures/single_result.xml",
      "test/fixtures/transformers.xml",
      "test/test_helper.rb",
