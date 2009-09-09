@@ -41,34 +41,21 @@ class TestTmdbParty < Test::Unit::TestCase
     
     assert_equal 132, transformers.runtime
     assert_equal 35, transformers.people.length
-    
-    # assert_equal 1.0, transformers.score
-    # assert_equal 1.0, transformers.score
-    # assert_equal 1.0, transformers.score
-    # assert_equal 1.0, transformers.score
-    # assert_equal 1.0, transformers.score
-    # assert_equal 1.0, transformers.score
-    # assert_equal 1.0, transformers.score
-    
-    
-    
-    
+      
   end
-
+  
   test "getting a single result" do
     stub_get('/Movie.search?api_key=key&title=sweeney%20todd', 'single_result.xml')
     
     results = @tmdb.search('sweeney todd')
-    
-    assert_equal 1, results.length
-    
     sweeney_todd = results.first
     
+    assert_equal 1, results.length
     assert_equal 'tt0408236', sweeney_todd.imdb
   end
-
-
-
+  
+  
+  
   test "finding transformers via imdb id" do
     stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279', 'imdb_search.xml')
     stub_get('/Movie.getInfo?api_key=key&id=1858', 'transformers.xml')
@@ -89,15 +76,26 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal "http://www.youtube.com/watch?v=eduwcuq1Exg", result.trailer.url
     
     assert_equal 9, result.categories.length
+    assert_equal 35, result.people.length
     
     category = result.categories.detect{|cat| cat.name == "Adventure Film"}
     assert_equal "http://www.themoviedb.org/encyclopedia/category/12", category.url
   end
-
+  
   test "NOT finding transformers via imdb id" do
     stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279dd', 'imdb_no_results.xml')
     result = @tmdb.imdb_lookup('tt0418279dd')
     assert_nil result
+  end
+
+  test "no people found" do
+    stub_get('/Movie.search?api_key=key&title=rad', 'rad.xml')
+    stub_get('/Movie.getInfo?api_key=key&id=13841', 'no_groups.xml')
+
+    rad = @tmdb.search('rad').first
+    
+    assert_nil rad.people
+    assert_nil rad.categories
   end
 
 end
