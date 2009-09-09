@@ -1,4 +1,4 @@
-gem 'httparty'
+# gem 'httparty'
 require 'httparty'
 require 'tmdb_party/core_extensions'
 require 'tmdb_party/attributes'
@@ -19,8 +19,14 @@ module TMDBParty
     
     def search(query)
       data = self.class.get('/Movie.search', :query=>{:title=>query})
-      data['results']['moviematches']['movie'].collect do |movie|
-        Movie.new(movie, self)
+      
+      case data['results']['moviematches']['movie']
+      when Array
+        data['results']['moviematches']['movie'].collect { |movie| Movie.new(movie, self) }
+      when Hash
+        [Movie.new(data['results']['moviematches']['movie'], self)]
+      else
+        []
       end
     end
     
