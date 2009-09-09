@@ -12,6 +12,7 @@ module TMDBParty
     attributes :homepage, :lazy => :get_info!
     attributes :trailer, :lazy => :get_info!, :type=> Video
     attributes :categories, :lazy => :get_info!, :type=> Category
+    attributes :people, :lazy => :get_info!, :type=> Person
     
     def initialize(values, tmdb)
       @tmdb = tmdb

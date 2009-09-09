@@ -4,6 +4,7 @@ require 'tmdb_party/core_extensions'
 require 'tmdb_party/attributes'
 require 'tmdb_party/video'
 require 'tmdb_party/category'
+require 'tmdb_party/person'
 require 'tmdb_party/image'
 require 'tmdb_party/movie'
 
