@@ -26,15 +26,23 @@ module TMDBParty
     end
 
     def directors
-      people.select{|p| p.job == 'director'}
+      find_people('director')
     end
 
     def actors
-      people.select{|p| p.job == 'actor'}
+      find_people('actor')
     end
 
     def writers
-      people.select{|p| p.job == 'writer'}
+      find_people('writer')
+    end
+    
+    
+    private
+    
+    def find_people(type)
+      return [] unless people
+      people.select{|p| p.job == type}
     end
 
   end
