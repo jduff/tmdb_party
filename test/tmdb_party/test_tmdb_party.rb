@@ -96,6 +96,10 @@ class TestTmdbParty < Test::Unit::TestCase
     
     assert_nil rad.people
     assert_nil rad.categories
+    
+    assert_equal 0, rad.directors.length
+    assert_equal 0, rad.writers.length
+    assert_equal 0, rad.actors.length
   end
 
   test "specific people" do
