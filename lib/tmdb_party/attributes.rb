@@ -45,6 +45,7 @@ module TMDBParty
 
       private
       def decode_raw_attribute(value, type)
+        return nil unless value
         type.respond_to?(:parse) ? type.parse(value) : value
       end
     end
