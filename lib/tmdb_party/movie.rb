@@ -25,6 +25,18 @@ module TMDBParty
       @loaded = true
     end
 
+    def directors
+      people.select{|p| p.job == 'director'}
+    end
+
+    def actors
+      people.select{|p| p.job == 'actor'}
+    end
+
+    def writers
+      people.select{|p| p.job == 'writer'}
+    end
+
   end
   
 end
