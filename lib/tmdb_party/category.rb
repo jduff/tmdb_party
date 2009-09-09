@@ -8,6 +8,7 @@ module TMDBParty
     end
     
     def self.parse(data)
+      return unless data
       data = data["category"]
       if data.is_a?(Array)
         data.collect do |category|
