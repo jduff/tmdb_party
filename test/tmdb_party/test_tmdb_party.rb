@@ -40,7 +40,7 @@ class TestTmdbParty < Test::Unit::TestCase
     
     
     assert_equal 132, transformers.runtime
-    assert_equal 35, transformers.people.length
+    assert_equal 36, transformers.people.length
       
   end
   
@@ -76,7 +76,7 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal "http://www.youtube.com/watch?v=eduwcuq1Exg", result.trailer.url
     
     assert_equal 9, result.categories.length
-    assert_equal 35, result.people.length
+    assert_equal 36, result.people.length
     
     category = result.categories.detect{|cat| cat.name == "Adventure Film"}
     assert_equal "http://www.themoviedb.org/encyclopedia/category/12", category.url
@@ -96,6 +96,17 @@ class TestTmdbParty < Test::Unit::TestCase
     
     assert_nil rad.people
     assert_nil rad.categories
+  end
+
+  test "specific people" do
+    stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279', 'imdb_search.xml')
+    stub_get('/Movie.getInfo?api_key=key&id=1858', 'transformers.xml')
+
+    result = @tmdb.imdb_lookup('tt0418279')
+    
+    assert_equal 1, result.directors.length
+    assert_equal 1, result.writers.length
+    assert_equal 17, result.actors.length
   end
 
 end
