@@ -39,6 +39,19 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal "http://www.themoviedb.org/encyclopedia/category/12", category.url
   end
 
+  test "getting a single result" do
+    stub_get('/Movie.search?api_key=key&title=sweeney%20todd', 'single_result.xml')
+    
+    results = @tmdb.search('sweeney todd')
+    
+    assert_equal 1, results.length
+    
+    sweeney_todd = results.first
+    
+    assert_equal 'tt0408236', sweeney_todd.imdb
+  end
+
+
 
   test "finding transformers via imdb id" do
     stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279', 'imdb_search.xml')
@@ -68,7 +81,6 @@ class TestTmdbParty < Test::Unit::TestCase
   test "NOT finding transformers via imdb id" do
     stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279dd', 'imdb_no_results.xml')
     result = @tmdb.imdb_lookup('tt0418279dd')
-    puts result.inspect
     assert_nil result
   end
 
