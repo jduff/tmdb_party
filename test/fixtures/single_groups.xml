@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<results for="1858" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+<opensearch:Query searchTerms="1858"/>
+<opensearch:totalResults>1</opensearch:totalResults>
+<moviematches>
+<movie>
+<score>1.0</score>
+<popularity>32</popularity>
+<title>Transformers</title>
+<alternative_title>The Transformers</alternative_title>
+<type>movie</type>
+
+<id>1858</id>
+<imdb>tt0418279</imdb>
+<url>http://www.themoviedb.org/movie/1858</url>
+<short_overview>The Earth is caught in the middle of an intergalactic war between two races of robots, the heroic Autobots and the evil Decepticons, which are able to change into a variety of objects, including cars, trucks, planes and other technological creations.</short_overview>
+<rating>7.56522</rating>
+<release>2007-07-04</release>
+<runtime>132</runtime>
+<budget>150000000</budget>
+<revenue>708226810</revenue>
+
+<homepage>http://www.transformersmovie.com/</homepage>
+<production_countries>
+<country>
+<name>United States of America</name>
+<short_name>US</short_name>
+<url>http://www.themoviedb.org/encyclopedia/country/223</url>
+</country>
+</production_countries>
+<trailer source="youtube">http://www.youtube.com/watch?v=eduwcuq1Exg</trailer>
+<poster size="original">http://images.themoviedb.org/posters/937/Transformers_3d7ecdab.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/937/Transformers_3d7ecdab_thumb.jpg</poster>
+
+<poster size="mid">http://images.themoviedb.org/posters/937/Transformers_3d7ecdab_mid.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/937/Transformers_3d7ecdab_cover.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/941/Transformers_7f0d814e.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/941/Transformers_7f0d814e_thumb.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/941/Transformers_7f0d814e_mid.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/941/Transformers_7f0d814e_cover.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/945/Transformers_7394f415.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/945/Transformers_7394f415_thumb.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/945/Transformers_7394f415_mid.jpg</poster>
+
+<poster size="cover">http://images.themoviedb.org/posters/945/Transformers_7394f415_cover.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/949/Transformers_cd48d8bb.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/949/Transformers_cd48d8bb_thumb.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/949/Transformers_cd48d8bb_mid.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/949/Transformers_cd48d8bb_cover.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/7937/Transformers.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/7937/Transformers_mid.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/7937/Transformers_cover.jpg</poster>
+
+<poster size="thumb">http://images.themoviedb.org/posters/7937/Transformers_thumb.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/30022/Transformers_v1.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/30022/Transformers_v1_cover.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/30022/Transformers_v1_mid.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/30022/Transformers_v1_thumb.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/30026/Transformers_v2.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/30026/Transformers_v2_cover.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/30026/Transformers_v2_mid.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/30026/Transformers_v2_thumb.jpg</poster>
+
+<poster size="original">http://images.themoviedb.org/posters/30030/Transformers_v3.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/30030/Transformers_v3_cover.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/30030/Transformers_v3_mid.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/30030/Transformers_v3_thumb.jpg</poster>
+<poster size="original">http://images.themoviedb.org/posters/30034/Transformers_v1.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/30034/Transformers_v1_cover.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/30034/Transformers_v1_mid.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/30034/Transformers_v1_thumb.jpg</poster>
+
+<poster size="original">http://images.themoviedb.org/posters/30038/Transformers_v2.jpg</poster>
+<poster size="cover">http://images.themoviedb.org/posters/30038/Transformers_v2_cover.jpg</poster>
+<poster size="mid">http://images.themoviedb.org/posters/30038/Transformers_v2_mid.jpg</poster>
+<poster size="thumb">http://images.themoviedb.org/posters/30038/Transformers_v2_thumb.jpg</poster>
+<backdrop size="original">http://images.themoviedb.org/backdrops/1394/tt0418279-1.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/1394/tt0418279-1_poster.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/1394/tt0418279-1_thumb.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/2279/tt0418279.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/2279/tt0418279_poster.jpg</backdrop>
+
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/2279/tt0418279_thumb.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/8546/Transformers_2007_1920x1080.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/8546/Transformers_2007_1920x1080_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/8546/Transformers_2007_1920x1080_poster.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/15635/Transformers-fanart.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/15635/Transformers-fanart_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/15635/Transformers-fanart_poster.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/27158/Fox_Megan001a.jpg</backdrop>
+
+<backdrop size="mid">http://images.themoviedb.org/backdrops/27158/Fox_Megan001a_poster.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/27158/Fox_Megan001a_thumb.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/27161/Mikaela-Banes-transformers-71359_1920_1080.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/27161/Mikaela-Banes-transformers-71359_1920_1080_poster.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/27161/Mikaela-Banes-transformers-71359_1920_1080_thumb.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/34127/fanart.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/34127/fanart_poster.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/34127/fanart_thumb.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/34130/fanart2.jpg</backdrop>
+
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/34130/fanart2_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/34130/fanart2_poster.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/35204/Transformers_1.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/35204/Transformers_1_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/35204/Transformers_1_poster.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/35207/Transformers_2.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/35207/Transformers_2_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/35207/Transformers_2_poster.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/35219/Transformers_3.jpg</backdrop>
+
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/35219/Transformers_3_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/35219/Transformers_3_poster.jpg</backdrop>
+<backdrop size="original">http://images.themoviedb.org/backdrops/35222/Transformers_4.jpg</backdrop>
+<backdrop size="thumb">http://images.themoviedb.org/backdrops/35222/Transformers_4_thumb.jpg</backdrop>
+<backdrop size="mid">http://images.themoviedb.org/backdrops/35222/Transformers_4_poster.jpg</backdrop>
+<people>
+<person job="director">
+<name>Michael Bay</name>
+<role></role>
+<url>http://www.themoviedb.org/person/865</url>
+</person>
+</people>
+<categories>
+<category>
+<name>Hollywood Film</name>
+<url>http://www.themoviedb.org/encyclopedia/category/50</url>
+</category>
+</categories>
+</movie>
+</moviematches>
+</results>
