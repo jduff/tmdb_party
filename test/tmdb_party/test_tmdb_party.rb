@@ -113,4 +113,14 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal 17, result.actors.length
   end
 
+  test "single groups" do
+    stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279', 'imdb_search.xml')
+    stub_get('/Movie.getInfo?api_key=key&id=1858', 'single_groups.xml')
+
+    result = @tmdb.imdb_lookup('tt0418279')
+
+    assert_equal Array, result.people.class
+    assert_equal Array, result.categories.class
+  end
+
 end

@@ -15,7 +15,7 @@ module TMDBParty
           Category.new(category)
         end
       else
-        Category.new(data)
+        [Category.new(data)]
       end
     end
   end

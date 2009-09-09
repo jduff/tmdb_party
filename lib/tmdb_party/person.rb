@@ -15,7 +15,7 @@ module TMDBParty
           Person.new(person)
         end
       else
-        Person.new(data)
+        [Person.new(data)]
       end
     end
   end
