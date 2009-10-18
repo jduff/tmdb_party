@@ -30,20 +30,19 @@ module TMDBParty
     
     def search(query)
       data = self.class.get("/Movie.search/" + default_path_items.join('/') + '/' + URI.escape(query))
-      if data
-        data.collect { |movie| Movie.new(movie, self) }
-      else
+      if data.first == "Nothing found."
         []
+      else
+        data.collect { |movie| Movie.new(movie, self) }
       end
     end
     
     def imdb_lookup(imdb_id)
-      data = self.class.get('/Movie.imdbLookup', :query=>{:imdb_id=>imdb_id})
-      case data['results']['moviematches']['movie']
-      when String
-        return nil
-      when Hash
-        Movie.new(data['results']['moviematches']['movie'], self)
+      data = self.class.get("/Movie.imdbLookup/" + default_path_items.join('/') + '/' + imdb_id)
+      if data.first == "Nothing found."
+        nil
+      else
+        Movie.new(data.first, self)
       end
     end
     
