@@ -27,9 +27,6 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal 'tt0418279', transformers.imdb_id
     assert_equal Date.new(2007, 7, 4), transformers.released
   
-    # assert transformers.poster.first.is_a?(TMDBParty::Image)
-    # assert transformers.backdrop.first.is_a?(TMDBParty::Image)
-    # 
     # how about some that are loaded lazily
     assert_equal "http://www.transformersmovie.com/", transformers.homepage
     assert_equal "http://www.youtube.com/watch?v=c0PXr8GV2_Q", transformers.trailer
@@ -66,8 +63,6 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal 1858, result.id
     assert_equal 'tt0418279', result.imdb_id
     assert_equal Date.new(2007, 7, 4), result.released
-    # assert result.poster.first.is_a?(TMDBParty::Image)
-    # assert result.backdrop.first.is_a?(TMDBParty::Image)
     #   
     # how about some that are loaded lazily
     assert_equal "http://www.transformersmovie.com/", result.homepage
@@ -111,6 +106,34 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_equal 1, result.directors.length
     assert_equal 0, result.writers.length
     assert_equal 17, result.actors.length
+  end
+  
+  test "posters" do
+    stub_get('/Movie.search/en/json/key/Transformers', 'search.json')
+    stub_get('/Movie.getInfo/en/json/key/1858', 'transformers.json')
+    
+    result = @tmdb.search('Transformers').first
+
+    assert_equal 10, result.posters.size
+    assert_equal 4, result.posters.first.keys.size
+
+    assert result.posters.first.has_key? 'cover'
+    assert result.posters.first.has_key? 'thumb'
+    assert result.posters.first.has_key? 'mid'
+    assert result.posters.first.has_key? 'original'
+  end
+
+  test "backdrops" do
+    stub_get('/Movie.search/en/json/key/Transformers', 'search.json')
+    stub_get('/Movie.getInfo/en/json/key/1858', 'transformers.json')
+    
+    result = @tmdb.search('Transformers').first
+
+    assert_equal 11, result.backdrops.size
+    assert_equal 3, result.backdrops.first.keys.size
+    assert result.backdrops.first.has_key? 'poster'
+    assert result.backdrops.first.has_key? 'thumb'
+    assert result.backdrops.first.has_key? 'original'
   end
 
 end

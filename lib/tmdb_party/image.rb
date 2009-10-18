@@ -1,18 +1,23 @@
 module TMDBParty
   class Image
-    attr_reader :url
+    attr_reader :url, :type, :size
     
-    def initialize(url)
-      @url = url
+    def initialize(options={})
+      @url = options["url"]
+      @type = options["type"]
+      @size = options["size"]
     end
     
     def self.parse(data)
+      puts data.inspect
+      puts
+      puts
       if data.is_a?(Array)
-        data.collect do |url|
-          Image.new(url)
+        data.collect do |image|
+          Image.new(image["image"])
         end
       else
-        Image.new(data)
+        Image.new(image["image"])
       end
     end
   end
