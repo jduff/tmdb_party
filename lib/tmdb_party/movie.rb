@@ -3,16 +3,17 @@ module TMDBParty
     include Attributes
     attr_reader :tmdb
     
-    attributes :title, :short_overview, :id, :score, :imdb, :type, :url, :popularity, :alternative_title
-    attributes :release, :type=>DateTime
-    attributes :id, :runtime, :type => Integer
+    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title
+    attributes :released
+    attributes :id, :type => Integer
     attributes :popularity, :score, :type => Float
-    attributes :poster, :backdrop, :type => Image
+    # attributes :poster, :backdrop, :type => Image
     
     attributes :homepage, :lazy => :get_info!
-    attributes :trailer, :lazy => :get_info!, :type=> Video
-    attributes :categories, :lazy => :get_info!, :type=> Category
-    attributes :people, :lazy => :get_info!, :type=> Person
+    attributes :trailer, :lazy => :get_info!
+    attributes :runtime, :lazy => :get_info!, :type => Integer
+    attributes :genres, :lazy => :get_info!, :type => Genre
+    attributes :cast, :lazy => :get_info!, :type => Person
     
     def initialize(values, tmdb)
       @tmdb = tmdb

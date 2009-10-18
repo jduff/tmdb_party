@@ -22,7 +22,6 @@ module TMDBParty
       def attribute(name, options)
         options.replace({:type => 'nil', :lazy=>false}.merge(options))
         raise "Name can't be empty" if name.blank?
-
         lazy_load = "self.#{options[:lazy]} unless self.loaded?" if options[:lazy]
         class_eval <<-EOS
   def #{name}

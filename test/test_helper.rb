@@ -17,7 +17,7 @@ def fixture_file(filename)
 end
  
 def tmdb_url(url)
-  url =~ /^http/ ? url : "http://api.themoviedb.org/2.0#{url}"
+  url =~ /^http/ ? url : "http://api.themoviedb.org/2.1#{url}"
 end
  
 def stub_get(url, filename, status=nil)
