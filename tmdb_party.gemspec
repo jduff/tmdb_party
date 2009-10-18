@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tmdb_party}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John Duff", "Jon Maddox"]
-  s.date = %q{2009-10-10}
+  s.date = %q{2009-10-18}
   s.email = %q{duff.john@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "lib/tmdb_party/attributes.rb",
      "lib/tmdb_party/category.rb",
      "lib/tmdb_party/core_extensions.rb",
+     "lib/tmdb_party/httparty_icebox.rb",
      "lib/tmdb_party/image.rb",
      "lib/tmdb_party/movie.rb",
      "lib/tmdb_party/person.rb",
@@ -46,7 +47,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{TODO}
+  s.summary = %q{Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) using HTTParty}
   s.test_files = [
     "test/test_helper.rb",
      "test/tmdb_party/test_tmdb_party.rb"
