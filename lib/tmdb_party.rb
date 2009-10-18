@@ -29,15 +29,11 @@ module TMDBParty
     end
     
     def search(query)
-      data = self.class.get("/Movie.search/" + default_path_items.join('/') + '/' + query)
-      case data
-      when Array
+      data = self.class.get("/Movie.search/" + default_path_items.join('/') + '/' + URI.escape(query))
+      if data
         data.collect { |movie| Movie.new(movie, self) }
-      when Hash
-        [Movie.new(data, self)]
       else
         []
-        data.collect { |movie| Movie.new(movie, self) }
       end
     end
     
