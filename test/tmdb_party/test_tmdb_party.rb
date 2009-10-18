@@ -88,20 +88,20 @@ class TestTmdbParty < Test::Unit::TestCase
     assert_nil result
   end
   
-  # test "no people found" do
-  #   stub_get('/Movie.search?api_key=key&title=rad', 'rad.xml')
-  #   stub_get('/Movie.getInfo?api_key=key&id=13841', 'no_groups.xml')
-  # 
-  #   rad = @tmdb.search('rad').first
-  #   
-  #   assert_nil rad.people
-  #   assert_nil rad.categories
-  #   
-  #   assert_equal 0, rad.directors.length
-  #   assert_equal 0, rad.writers.length
-  #   assert_equal 0, rad.actors.length
-  # end
-  # 
+  test "no people found" do
+    stub_get('/Movie.search/en/json/key/rad', 'rad.json')
+    stub_get('/Movie.getInfo/en/json/key/13841', 'no_groups.json')
+  
+    rad = @tmdb.search('rad').first
+    
+    assert_equal [], rad.cast
+    assert_equal [], rad.genres
+    
+    assert_equal 0, rad.directors.length
+    assert_equal 0, rad.writers.length
+    assert_equal 0, rad.actors.length
+  end
+  
   # test "specific people" do
   #   stub_get('/Movie.imdbLookup?api_key=key&imdb_id=tt0418279', 'imdb_search.xml')
   #   stub_get('/Movie.getInfo?api_key=key&id=1858', 'transformers.xml')
