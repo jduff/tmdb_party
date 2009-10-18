@@ -3,7 +3,6 @@
 Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) using HTTParty
 
 = usage:
-  {Gemcutter}[http://gemcutter.org/]
   sudo gem install tmdb_party -s http://gemcutter.org
   require 'tmdb_party'
 
