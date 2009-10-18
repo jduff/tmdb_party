@@ -1,6 +1,7 @@
 # gem 'httparty'
 require 'httparty'
 require 'tmdb_party/core_extensions'
+require 'tmdb_party/httparty_icebox'
 require 'tmdb_party/attributes'
 require 'tmdb_party/video'
 require 'tmdb_party/category'
@@ -11,6 +12,9 @@ require 'tmdb_party/movie'
 module TMDBParty
   class Base
     include HTTParty
+    include HTTParty::Icebox
+    cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
+
     base_uri 'http://api.themoviedb.org/2.0'
     format :xml
     
