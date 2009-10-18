@@ -5,16 +5,17 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "tmdb_party"
-    gem.summary = %Q{Simple library to interface with themoviedb.org}
+    gem.summary = %Q{Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) using HTTParty}
     gem.email = "duff.john@gmail.com"
     gem.homepage = "http://github.com/jduff/tmdb_party"
-    gem.authors = ["John Duff"]
+    gem.authors = ["John Duff", "Jon Maddox"]
     gem.add_dependency('httparty', '>= 0.4.3')
     
     gem.add_development_dependency('fakeweb')
     gem.add_development_dependency('context')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
