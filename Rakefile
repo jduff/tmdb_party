@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "tmdb_party"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Simple library to interface with themoviedb.org}
     gem.email = "duff.john@gmail.com"
     gem.homepage = "http://github.com/jduff/tmdb_party"
     gem.authors = ["John Duff"]
