@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<results for="tt041827sdd9" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
-<opensearch:Query searchTerms="tt041827sdd9"/>
-<opensearch:totalResults>0</opensearch:totalResults>
-<moviematches>
-<movie>Your query didn't return any results.</movie>
-</moviematches>
-</results>
