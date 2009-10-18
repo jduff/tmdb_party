@@ -12,8 +12,8 @@ require 'tmdb_party/movie'
 module TMDBParty
   class Base
     include HTTParty
-    # include HTTParty::Icebox
-    # cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
+    include HTTParty::Icebox
+    cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
 
     base_uri 'http://api.themoviedb.org/2.1'
     format :json
