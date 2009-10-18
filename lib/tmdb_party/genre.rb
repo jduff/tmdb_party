@@ -1,7 +1,7 @@
 module TMDBParty
-  class Person
+  class Genre
     include Attributes
-    attributes :name, :url, :job
+    attributes :name, :url
     
     def initialize(values)
       self.attributes = values
@@ -10,11 +10,11 @@ module TMDBParty
     def self.parse(data)
       return unless data
       if data.is_a?(Array)
-        data.collect do |person|
-          Person.new(person)
+        data.collect do |g|
+          Genre.new(g)
         end
       else
-        [Person.new(data)]
+        [Genre.new(data)]
       end
     end
   end
