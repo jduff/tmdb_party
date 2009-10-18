@@ -44,15 +44,15 @@ class TestTmdbParty < Test::Unit::TestCase
       
   end
   
-  # test "getting a single result" do
-  #   stub_get('/Movie.search?api_key=key&title=sweeney%20todd', 'single_result.xml')
-  #   
-  #   results = @tmdb.search('sweeney todd')
-  #   sweeney_todd = results.first
-  #   
-  #   assert_equal 1, results.length
-  #   assert_equal 'tt0408236', sweeney_todd.imdb
-  # end
+  test "getting a single result" do
+    stub_get('/Movie.search/en/json/key/sweeney%20todd', 'single_result.json')
+    
+    results = @tmdb.search('sweeney todd')
+    sweeney_todd = results.first
+    
+    assert_equal 1, results.length
+    assert_equal 'tt0408236', sweeney_todd.imdb_id
+  end
   # 
   # 
   # 

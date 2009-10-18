@@ -1,0 +1,69 @@
+[{
+    "rating": "9.0",
+    "alternative_name": null,
+    "name": "Sweeney Todd: The Demon Barber of Fleet Street",
+    "score": 1.0,
+    "overview": "The infamous story of Benjamin Barker, a.k.a Sweeney Todd, who sets up a barber shop down in London which is the basis for a sinister partnership with his fellow tenant, Mrs. Lovett. Based on the hit Broadway musical.",
+    "url": "http:\/\/www.themoviedb.org\/movie\/13885",
+    "id": 13885,
+    "posters": [{
+        "image": {
+            "size": "original",
+            "url": "http:\/\/images.themoviedb.org\/posters\/8329\/folder.jpg",
+            "type": "poster",
+            "id": 8329
+        }
+    },
+    {
+        "image": {
+            "size": "mid",
+            "url": "http:\/\/images.themoviedb.org\/posters\/8329\/folder_mid.jpg",
+            "type": "poster",
+            "id": 8329
+        }
+    },
+    {
+        "image": {
+            "size": "cover",
+            "url": "http:\/\/images.themoviedb.org\/posters\/8329\/folder_cover.jpg",
+            "type": "poster",
+            "id": 8329
+        }
+    },
+    {
+        "image": {
+            "size": "thumb",
+            "url": "http:\/\/images.themoviedb.org\/posters\/8329\/folder_thumb.jpg",
+            "type": "poster",
+            "id": 8329
+        }
+    }],
+    "imdb_id": "tt0408236",
+    "backdrops": [{
+        "image": {
+            "size": "original",
+            "url": "http:\/\/images.themoviedb.org\/backdrops\/15314\/sweeney_todd.jpg",
+            "type": "backdrop",
+            "id": 15314
+        }
+    },
+    {
+        "image": {
+            "size": "thumb",
+            "url": "http:\/\/images.themoviedb.org\/backdrops\/15314\/sweeney_todd_thumb.jpg",
+            "type": "backdrop",
+            "id": 15314
+        }
+    },
+    {
+        "image": {
+            "size": "poster",
+            "url": "http:\/\/images.themoviedb.org\/backdrops\/15314\/sweeney_todd_poster.jpg",
+            "type": "backdrop",
+            "id": 15314
+        }
+    }],
+    "released": "2007-12-21",
+    "movie_type": "movie",
+    "popularity": 2
+}]
