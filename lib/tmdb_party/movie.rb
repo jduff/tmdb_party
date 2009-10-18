@@ -27,15 +27,15 @@ module TMDBParty
     end
 
     def directors
-      find_cast('director')
+      find_cast('Director')
     end
 
     def actors
-      find_cast('actor')
+      find_cast('Actor')
     end
 
     def writers
-      find_cast('writer')
+      find_cast('Writer')
     end
     
     
@@ -43,7 +43,7 @@ module TMDBParty
     
     def find_cast(type)
       return [] unless cast
-      cast.select{|c| c.job == type}
+      guys = cast.select{|c| c.job == type}
     end
 
   end
