@@ -20,7 +20,7 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
     # => 31
   transformers.score
     # => 1.0
-  transformers.imdb
+  transformers.imdb_id
     # => 'tt0418279'
 
   # some attributes don't come back with the search result, they are lazily loaded on demand
@@ -29,7 +29,7 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
   transformers.trailer.url
     # => "http://www.youtube.com/watch?v=eduwcuq1Exg"
 
-  transformers.categories.collect{|cat| cat.name}.include?("Adventure Film")
+  transformers.genres.collect{|cat| cat.name}.include?("Adventure")
     # => true
 
 = what is themoviedb.org?

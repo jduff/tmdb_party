@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tmdb_party}
-  s.version = "0.3.1"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John Duff", "Jon Maddox"]
@@ -26,19 +26,19 @@ Gem::Specification.new do |s|
      "lib/tmdb_party/attributes.rb",
      "lib/tmdb_party/category.rb",
      "lib/tmdb_party/core_extensions.rb",
+     "lib/tmdb_party/genre.rb",
      "lib/tmdb_party/httparty_icebox.rb",
      "lib/tmdb_party/image.rb",
      "lib/tmdb_party/movie.rb",
      "lib/tmdb_party/person.rb",
      "lib/tmdb_party/video.rb",
-     "test/fixtures/imdb_no_results.xml",
-     "test/fixtures/imdb_search.xml",
-     "test/fixtures/no_groups.xml",
-     "test/fixtures/rad.xml",
-     "test/fixtures/search.xml",
-     "test/fixtures/single_groups.xml",
-     "test/fixtures/single_result.xml",
-     "test/fixtures/transformers.xml",
+     "test/fixtures/imdb_no_results.json",
+     "test/fixtures/imdb_search.json",
+     "test/fixtures/no_groups.json",
+     "test/fixtures/rad.json",
+     "test/fixtures/search.json",
+     "test/fixtures/single_result.json",
+     "test/fixtures/transformers.json",
      "test/test_helper.rb",
      "test/tmdb_party/test_tmdb_party.rb",
      "tmdb_party.gemspec"
