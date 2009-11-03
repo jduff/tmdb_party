@@ -136,4 +136,13 @@ class TestTmdbParty < Test::Unit::TestCase
     assert result.backdrops.first.has_key? 'original'
   end
 
+  test "blank result" do
+    stub_get('/Movie.search/en/json/key/Closing%20the%20Ring', 'shitty_shit_result.json')
+    
+    results = @tmdb.search('Closing the Ring')
+    assert_equal 0, results.size
+  end
+  
+  
+
 end
