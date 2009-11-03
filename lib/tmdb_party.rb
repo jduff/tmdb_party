@@ -30,7 +30,7 @@ module TMDBParty
     
     def search(query)
       data = self.class.get("/Movie.search/" + default_path_items.join('/') + '/' + URI.escape(query))
-      if data.first == "Nothing found."
+      if data.class != Array || data.first == "Nothing found."
         []
       else
         data.collect { |movie| Movie.new(movie, self) }
@@ -39,7 +39,7 @@ module TMDBParty
     
     def imdb_lookup(imdb_id)
       data = self.class.get("/Movie.imdbLookup/" + default_path_items.join('/') + '/' + imdb_id)
-      if data.first == "Nothing found."
+      if data.class != Array || data.first == "Nothing found."
         nil
       else
         Movie.new(data.first, self)
