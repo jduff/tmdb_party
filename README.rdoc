@@ -4,6 +4,7 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
 
 = usage:
   sudo gem install tmdb_party -s http://gemcutter.org
+  require 'rubygems'
   require 'tmdb_party'
 
 = example:
