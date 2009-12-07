@@ -15,7 +15,7 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
   results.length
     # => 5
 
-  transformers = results.detect{|m| m.title == "Transformers"}
+  transformers = results.detect{|m| m.name == "Transformers"}
 
   transformers.popularity
     # => 31
