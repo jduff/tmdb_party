@@ -7,6 +7,7 @@ require 'tmdb_party/video'
 require 'tmdb_party/genre'
 require 'tmdb_party/person'
 require 'tmdb_party/image'
+require 'tmdb_party/country'
 require 'tmdb_party/movie'
 
 module TMDBParty

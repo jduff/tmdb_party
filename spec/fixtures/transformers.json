@@ -883,7 +883,11 @@
         "id": "10631",
         "job": "Special Effects"
     }],
-    "countries": [],
+    "countries": [{
+        "code": "US",
+        "name": "United States of America",
+        "url": "http://www.themoviedb.org/country/us"
+    }],
     "genres": [{
         "name": "Action",
         "url": "http:\/\/themoviedb.org\/encyclopedia\/category\/28"

@@ -19,7 +19,7 @@ describe TMDBParty::Movie do
   end
   
   describe "attributes" do
-    [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast].each do |attribute|
+    [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast, :countries].each do |attribute|
       it "should load #{attribute} attribute by looking up the movie" do
         movie = TMDBParty::Movie.new({ 'id' => 1858 }, TMDBParty::Base.new('key'))
         movie.send(attribute).should_not be_nil
@@ -66,6 +66,11 @@ describe TMDBParty::Movie do
     it "should have a list of genres" do
       transformers_movie.should have(3).genres
       transformers_movie.genres.map { |g| g.name }.should include('Action', 'Adventure', 'Science Fiction')
+    end
+    
+    it "should have a list of countries" do
+      transformers_movie.should have(1).countries
+      transformers_movie.countries.first.url.should == 'http://www.themoviedb.org/country/us'
     end
   end
   

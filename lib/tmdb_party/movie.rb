@@ -14,6 +14,7 @@ module TMDBParty
     attributes :runtime, :lazy => :get_info!, :type => Integer
     attributes :genres, :lazy => :get_info!, :type => Genre
     attributes :cast, :lazy => :get_info!, :type => Person
+    attributes :countries, :lazy => :get_info!, :type => Country
     
     alias_method :flattened_posters, :posters
     alias_method :flattened_backdrops, :backdrops
