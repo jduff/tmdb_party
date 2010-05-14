@@ -1,5 +1,6 @@
 [{
     "studios": [],
+    "translated": true,
     "rating": "7.46667",
     "alternative_name": "The Transformers",
     "name": "Transformers",
@@ -7,6 +8,10 @@
     "overview": "The Earth is caught in the middle of an intergalactic war between two races of robots, the heroic Autobots and the evil Decepticons, which are able to change into a variety of objects, including cars, trucks, planes and other technological creations.",
     "url": "http:\/\/www.themoviedb.org\/movie\/1858",
     "id": 1858,
+    "language": "en",
+    "imdb_id": "tt0418279",
+    "tagline": "Their war. Our world.",
+    "certification": "PG-13",
     "posters": [{
         "image": {
             "size": "original",

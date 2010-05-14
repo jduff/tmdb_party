@@ -19,7 +19,7 @@ describe TMDBParty::Movie do
   end
   
   describe "attributes" do
-    [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast, :countries].each do |attribute|
+    [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast, :countries, :tagline].each do |attribute|
       it "should load #{attribute} attribute by looking up the movie" do
         movie = TMDBParty::Movie.new({ 'id' => 1858 }, TMDBParty::Base.new('key'))
         movie.send(attribute).should_not be_nil
@@ -37,6 +37,22 @@ describe TMDBParty::Movie do
     
     it "should have a release date" do
       transformers_movie.released.should == Date.new(2007, 7, 4)
+    end
+    
+    it "should have a translated? attribute" do
+      transformers_movie.should be_translated
+    end
+    
+    it "should have a language" do
+      transformers_movie.language.should == :en
+    end
+    
+    it "should have a tagline" do
+      transformers_movie.tagline.should == "Their war. Our world."
+    end
+    
+    it "should have a certification" do
+      transformers_movie.certification.should == "PG-13"
     end
     
     it "should have a list of directors" do

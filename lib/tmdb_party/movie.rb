@@ -3,11 +3,12 @@ module TMDBParty
     include Attributes
     attr_reader :tmdb
     
-    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title
+    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title, :translated, :language, :certification
     attributes :released
     attributes :id, :type => Integer
     attributes :popularity, :score, :type => Float
     
+    attributes :tagline, :lazy => :get_info!
     attributes :posters, :backdrops, :lazy => :get_info!
     attributes :homepage, :lazy => :get_info!
     attributes :trailer, :lazy => :get_info!
@@ -16,6 +17,8 @@ module TMDBParty
     attributes :cast, :lazy => :get_info!, :type => Person
     attributes :countries, :lazy => :get_info!, :type => Country
     
+    alias_method :translated?, :translated
+    alias_method :language_string, :language
     alias_method :flattened_posters, :posters
     alias_method :flattened_backdrops, :backdrops
     
@@ -28,6 +31,10 @@ module TMDBParty
       movie = tmdb.get_info(self.id)
       @attributes.merge!(movie.attributes) if movie
       @loaded = true
+    end
+
+    def language
+      language_string.downcase.to_sym
     end
 
     def directors
