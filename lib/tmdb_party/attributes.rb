@@ -20,15 +20,14 @@ module TMDBParty
       end
 
       def attribute(name, options)
-        options.replace({:type => 'nil', :lazy=>false}.merge(options))
-        raise "Name can't be empty" if name.blank?
-        lazy_load = "self.#{options[:lazy]} unless self.loaded?" if options[:lazy]
-        class_eval <<-EOS
-  def #{name}
-    #{lazy_load}
-    @#{name} ||= decode_raw_attribute(@attributes['#{name}'], #{options[:type]}) if @attributes
-  end
-  EOS
+        options = {:type => 'nil', :lazy => false}.merge(options)
+        raise ArgumentError, "Name can't be empty" if name.blank?
+        
+        class_eval <<-EVAL
+          def #{name}
+            get_or_load_attribute('#{name}', #{options[:type]}, #{options[:lazy].inspect})
+          end
+        EVAL
       end
 
     end
@@ -43,10 +42,23 @@ module TMDBParty
       end
 
       private
-      def decode_raw_attribute(value, type)
-        return nil unless value
-        type.respond_to?(:parse) ? type.parse(value) : value
-      end
+        def get_or_load_attribute(name, type, lazy_method)
+          if lazy_method.is_a?(Symbol) and raw_attribute_missing?(name) and not loaded?
+            self.send(lazy_method)
+          end
+          @attributes_cache ||= {}
+          @attributes_cache[name] ||= decode_raw_attribute(@attributes[name], type) if @attributes
+        end
+        
+        def raw_attribute_missing?(name)
+          not @attributes.has_key?(name.to_s)
+        end
+        
+        def decode_raw_attribute(value, type)
+          return nil unless value
+          type.respond_to?(:parse) ? type.parse(value) : value
+        end
+        
     end
   end
 end

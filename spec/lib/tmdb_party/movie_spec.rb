@@ -20,19 +20,18 @@ describe TMDBParty::Movie do
   
   describe "attributes" do
     [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast, :countries, :tagline].each do |attribute|
-      it "should load #{attribute} attribute by looking up the movie" do
+      it "should load #{attribute} attribute by looking up the movie if it is missing" do
         movie = TMDBParty::Movie.new({ 'id' => 1858 }, TMDBParty::Base.new('key'))
         movie.send(attribute).should_not be_nil
       end
     
-      # TODO
-      # it "should not look up the movie when #{attribute} is not missing" do
-      #   tmdb = mock(TMDBParty::Base)
-      #   movie = TMDBParty::Movie.new({ 'id' => 1858, attribute.to_s => transformers[attribute.to_s] }, tmdb)
-      #   
-      #   tmdb.should_not_receive(:get_info)
-      #   movie.send(attribute)
-      # end
+      it "should not look up the movie when #{attribute} is not missing" do
+        tmdb = mock(TMDBParty::Base)
+        movie = TMDBParty::Movie.new({ 'id' => 1858, attribute.to_s => transformers[attribute.to_s] }, tmdb)
+        
+        tmdb.should_not_receive(:get_info)
+        movie.send(attribute)
+      end
     end
     
     it "should have a release date" do
