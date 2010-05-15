@@ -1,5 +1,8 @@
 [{
-    "studios": [],
+    "studios": [{
+      "name": "DreamWorks SKG",
+      "url": "http:\/\/www.themoviedb.org\/company\/38"
+    }],
     "translated": true,
     "rating": "7.46667",
     "alternative_name": "The Transformers",

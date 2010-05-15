@@ -16,6 +16,7 @@ module TMDBParty
     attributes :genres, :lazy => :get_info!, :type => Genre
     attributes :cast, :lazy => :get_info!, :type => Person
     attributes :countries, :lazy => :get_info!, :type => Country
+    attributes :studios, :lazy => :get_info!, :type => Studio
     
     alias_method :translated?, :translated
     alias_method :language_string, :language
