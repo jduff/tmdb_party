@@ -38,6 +38,7 @@ It's a movie database, kind of like IMDB except it's more of a community wiki. T
 
 == Contributors
 Jon Maddox (http://github.com/maddox)
+Magnus Bergmark (http://github.com/Mange)
 
 == Copyright
 
