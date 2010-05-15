@@ -54,6 +54,10 @@ describe TMDBParty::Movie do
       transformers_movie.certification.should == "PG-13"
     end
     
+    it "should have a last modified at timestamp" do
+      transformers_movie.last_modified_at.should == Time.parse('2010-05-07 22:53:59 UTC')
+    end
+    
     it "should have a list of directors" do
       transformers_movie.directors.map { |p| p.name }.should == ['Michael Bay']
     end
