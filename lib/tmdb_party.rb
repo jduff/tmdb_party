@@ -1,15 +1,9 @@
 # gem 'httparty'
 require 'httparty'
-require 'tmdb_party/core_extensions'
-require 'tmdb_party/httparty_icebox'
-require 'tmdb_party/attributes'
-require 'tmdb_party/video'
-require 'tmdb_party/genre'
-require 'tmdb_party/person'
-require 'tmdb_party/image'
-require 'tmdb_party/country'
-require 'tmdb_party/studio'
-require 'tmdb_party/movie'
+
+%w[core_extensions httparty_icebox attributes video genre person image country studio movie].each do |class_name|
+  require "tmdb_party/#{class_name}"
+end
 
 module TMDBParty
   class Base
