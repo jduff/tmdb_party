@@ -14,14 +14,9 @@ module TMDBParty
     base_uri 'http://api.themoviedb.org/2.1'
     format :json
     
-    def initialize(key)
+    def initialize(key, lang = 'en')
       @api_key = key
-    end
-    
-    def default_path_items
-      path_items = ['en']
-      path_items << 'json'
-      path_items << @api_key
+      @lang = lang
     end
     
     def search(query)
@@ -46,5 +41,10 @@ module TMDBParty
       data = self.class.get("/Movie.getInfo/" + default_path_items.join('/') + '/' + id.to_s)
       Movie.new(data.first, self)
     end
+    
+    private
+      def default_path_items
+        [@lang, 'json', @api_key]
+      end
   end
 end

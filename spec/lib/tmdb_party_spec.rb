@@ -5,6 +5,10 @@ describe TMDBParty::Base do
     expect { TMDBParty::Base.new('key') }.to_not raise_error
   end
   
+  it "should take an optional preferred language when initialized" do
+    expect { TMDBParty::Base.new('key', 'sv') }.to_not raise_error
+  end
+  
   let :tmdb do
     TMDBParty::Base.new('key')
   end
@@ -25,6 +29,13 @@ describe TMDBParty::Base do
       stub_get('/Movie.search/en/json/key/Transformers', 'search.json')
       tmdb.search('Transformers').map { |m| m.score }.should == [1.0, 0.292378753423691, 0.0227534640580416, 0.0150842536240816, 0.00380283431150019]
     end
+    
+    it "should use the preferred language" do
+      stub_get('/Movie.search/en/json/key/Transformers', 'shitty_shit_result.json')
+      stub_get('/Movie.search/sv/json/key/Transformers', 'search.json')
+      
+      TMDBParty::Base.new('key', 'sv').search('Transformers').should have(5).movies
+    end
   end
   
   describe "#imdb_lookup" do
@@ -37,12 +48,26 @@ describe TMDBParty::Base do
       stub_get('/Movie.imdbLookup/en/json/key/tt0418279', 'imdb_search.json')
       tmdb.imdb_lookup('tt0418279').should be_instance_of(TMDBParty::Movie)
     end
+    
+    it "should use the preferred language" do
+      stub_get('/Movie.imdbLookup/en/json/key/tt0418279', 'shitty_shit_result.json')
+      stub_get('/Movie.imdbLookup/sv/json/key/tt0418279', 'imdb_search.json')
+      
+      TMDBParty::Base.new('key', 'sv').imdb_lookup('tt0418279').should_not be_nil
+    end
   end
   
   describe "#get_info" do
     it "should return a movie instance" do
       stub_get('/Movie.getInfo/en/json/key/1858', 'transformers.json')
       tmdb.get_info(1858).should be_instance_of(TMDBParty::Movie)
+    end
+    
+    it "should use the preferred language" do
+      stub_get('/Movie.getInfo/en/json/key/1858', 'shitty_shit_result.json')
+      stub_get('/Movie.getInfo/sv/json/key/1858', 'transformers.json')
+      
+      TMDBParty::Base.new('key', 'sv').get_info(1858).should_not be_nil
     end
   end
   
