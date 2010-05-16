@@ -14,12 +14,24 @@ describe TMDBParty::Person do
   
   let(:megan) { TMDBParty::Person.new(person) }
   
+  it "should have an id" do
+    megan.id.should == 19537
+  end
+  
   it "should have a name" do
     megan.name.should == "Megan Fox"
   end
   
+  it "should have a character name" do
+    megan.character_name.should == "Mikaela Banes"
+  end
+  
   it "should have a url" do
     megan.url.should == "http://www.themoviedb.org/person/19537"
+  end
+  
+  it "should have a image url" do
+    megan.image_url.should == "http://images.themoviedb.org/profiles/598/meghan_thumb.jpg"
   end
   
   it "should have a job" do
