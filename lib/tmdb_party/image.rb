@@ -16,6 +16,10 @@ module TMDBParty
       @attributes['sizes'].map { |size| size.downcase.to_sym }.to_set
     end
     
+    def url
+      original_url
+    end
+    
     def method_missing(*args, &block)
       if args.first.to_s =~ /\A(.*)_url\Z/
         @attributes["#{$1}_url"]

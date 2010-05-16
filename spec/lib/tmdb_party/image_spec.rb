@@ -49,6 +49,10 @@ describe TMDBParty::Image do
     image.thumb_url.should    =~ /_thumb.jpg$/
   end
   
+  it "#url should be an alias for #original_url" do
+    TMDBParty::Image.parse(image_collection).first.url.should =~ /_4.jpg$/
+  end
+  
   it "should have nil urls for sizes which the image doesn't have" do
     image = TMDBParty::Image.parse(image_collection.reject { |img| img['image']['size'] == 'thumb' }).first
     
