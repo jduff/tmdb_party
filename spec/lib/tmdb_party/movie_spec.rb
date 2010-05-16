@@ -70,16 +70,16 @@ describe TMDBParty::Movie do
       transformers_movie.writers.should == []
     end
     
-    it "should have a list of poster hashes" do
+    it "should have a list of poster images" do
       transformers_movie.should have(10).posters
       poster = transformers_movie.posters.first
-      poster.keys.should include('cover', 'thumb', 'mid', 'original')
+      poster.sizes.should include(:cover, :thumb, :mid, :original)
     end
     
-    it "should have a list of backdrop hashes" do
+    it "should have a list of backdrop images" do
       transformers_movie.should have(11).backdrops
       backdrop = transformers_movie.backdrops.first
-      backdrop.keys.should include('thumb', 'poster', 'original')
+      backdrop.sizes.should include(:thumb, :poster, :original)
     end
     
     it "should have a list of genres" do

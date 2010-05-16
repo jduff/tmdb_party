@@ -9,7 +9,7 @@ module TMDBParty
     attributes :popularity, :score, :type => Float
     
     attributes :tagline, :lazy => :get_info!
-    attributes :posters, :backdrops, :lazy => :get_info!
+    attributes :posters, :backdrops, :lazy => :get_info!, :type => Image
     attributes :homepage, :lazy => :get_info!
     attributes :trailer, :lazy => :get_info!
     attributes :runtime, :lazy => :get_info!, :type => Integer
@@ -21,8 +21,6 @@ module TMDBParty
     alias_method :translated?, :translated
     alias_method :language_string, :language
     alias_method :last_modified_at_string, :last_modified_at
-    alias_method :flattened_posters, :posters
-    alias_method :flattened_backdrops, :backdrops
     
     def initialize(values, tmdb)
       @tmdb = tmdb
@@ -56,29 +54,7 @@ module TMDBParty
       find_cast('Writer')
     end
     
-    def posters
-      process_art(flattened_posters)
-    end
-
-    def backdrops
-      process_art(flattened_backdrops)
-    end
-    
-    
     private
-    
-    def process_art(art)
-      image_groups = {}
-      art.each do |image_hash|
-        the_image = image_hash["image"]
-        if image_groups[the_image["id"]]
-          image_groups[the_image["id"]][the_image["size"]] = the_image["url"]
-        else
-          image_groups[the_image["id"]] = {the_image["size"] => the_image["url"]}
-        end
-      end
-      image_groups.values
-    end
     
     def find_cast(type)
       return [] unless cast
