@@ -3,7 +3,7 @@ module TMDBParty
     include Attributes
     attr_reader :tmdb
     
-    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title, :translated, :language, :certification, :last_modified_at
+    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title, :translated, :certification
     attributes :released
     attributes :id, :type => Integer
     attributes :popularity, :score, :type => Float
@@ -19,8 +19,6 @@ module TMDBParty
     attributes :studios, :lazy => :get_info!, :type => Studio
     
     alias_method :translated?, :translated
-    alias_method :language_string, :language
-    alias_method :last_modified_at_string, :last_modified_at
     
     def initialize(values, tmdb)
       @tmdb = tmdb
@@ -34,12 +32,12 @@ module TMDBParty
     end
 
     def language
-      language_string.downcase.to_sym
+      read_attribute('language').downcase.to_sym
     end
 
     def last_modified_at
       # Date from TMDB is always in MST, but no timezone is present in date string
-      Time.parse(last_modified_at_string + ' MST')
+      Time.parse(read_attribute('last_modified_at') + ' MST')
     end
 
     def directors

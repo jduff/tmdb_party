@@ -1,14 +1,19 @@
 module TMDBParty
   class Person
     include Attributes
-    attributes :name, :character, :url, :profile, :job
+    attributes :name, :url, :job
     attributes :id, :type => Integer
-    
-    alias_method :character_name, :character
-    alias_method :image_url, :profile
     
     def initialize(values)
       self.attributes = values
+    end
+    
+    def character_name
+      read_attribute('character')
+    end
+    
+    def image_url
+      read_attribute('profile')
     end
     
     def self.parse(data)

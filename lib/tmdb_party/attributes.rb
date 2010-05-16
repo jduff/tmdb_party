@@ -25,7 +25,7 @@ module TMDBParty
         
         class_eval <<-EVAL
           def #{name}
-            get_or_load_attribute('#{name}', #{options[:type]}, #{options[:lazy].inspect})
+            read_or_load_attribute('#{name}', #{options[:type]}, #{options[:lazy].inspect})
           end
         EVAL
       end
@@ -42,10 +42,14 @@ module TMDBParty
       end
 
       private
-        def get_or_load_attribute(name, type, lazy_method)
+        def read_or_load_attribute(name, type, lazy_method)
           if lazy_method.is_a?(Symbol) and raw_attribute_missing?(name) and not loaded?
             self.send(lazy_method)
           end
+          read_attribute(name, type)
+        end
+        
+        def read_attribute(name, type = nil)
           @attributes_cache ||= {}
           @attributes_cache[name] ||= decode_raw_attribute(@attributes[name], type) if @attributes
         end
