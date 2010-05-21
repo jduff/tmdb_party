@@ -86,4 +86,18 @@ describe TMDBParty::Base do
     end
   end
   
+  describe "#get_person" do
+    it "should return a person instance" do
+      stub_get('/Person.getInfo/en/json/key/19537', 'megan_fox.json')
+      tmdb.get_person(19537).should be_instance_of(TMDBParty::Person)
+    end
+    
+    it "should use the preferred language" do
+      stub_get('/Person.getInfo/en/json/key/19537', 'shitty_shit_result.json')
+      stub_get('/Person.getInfo/sv/json/key/19537', 'megan_fox.json')
+      
+      TMDBParty::Base.new('key', 'sv').get_person(19537).name.should == 'Megan Fox'
+    end
+  end
+  
 end

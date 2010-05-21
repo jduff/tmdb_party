@@ -51,6 +51,11 @@ module TMDBParty
       Movie.new(data.first, self)
     end
     
+    def get_person(id)
+      data = self.class.get(method_url('Person.getInfo', id))
+      Person.new(data.first)
+    end
+    
     private
       def default_path_items
         [@lang, 'json', @api_key]
