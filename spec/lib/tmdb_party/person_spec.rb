@@ -19,12 +19,27 @@ describe TMDBParty::Person do
     megan.url.should == "http://www.themoviedb.org/person/19537"
   end
   
+  it "should have a biography" do
+    megan.biography.should be_a(String)
+  end
+  
   it "should have a birthplace" do
     megan.birthplace.should == "Oakridge, TN"
   end
   
   it "should have a birthday" do
     megan.birthday.should == Date.new(1986, 5, 16)
+  end
+  
+  describe "biography" do
+    it "should have proper newlines" do
+      megan.biography.should include("\n")
+    end
+    
+    it "should properly get HTML tags" do
+      # HTTParty does not parse the encoded hexadecimal properly. It does not consider 000F to be a hex, but 000f is
+      megan.biography.should include("<b>Career</b>")
+    end
   end
 
 end
