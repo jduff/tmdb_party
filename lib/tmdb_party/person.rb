@@ -3,6 +3,7 @@ module TMDBParty
     include Attributes
     attr_reader :tmdb
     attributes :id, :popularity, :type => Integer
+    attributes :score, :type => Float
     attributes :name, :url, :biography
     
     attributes :birthplace, :birthday, :lazy => :get_info!

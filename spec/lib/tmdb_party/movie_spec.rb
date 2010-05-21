@@ -19,6 +19,10 @@ describe TMDBParty::Movie do
   end
   
   describe "attributes" do
+    it "should have a score when coming from search results" do
+      TMDBParty::Movie.new({'score' => '0.374527342'}, TMDBParty::Base.new('key')).score.should == 0.374527342
+    end
+    
     [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast, :countries, :tagline, :studios].each do |attribute|
       it "should load #{attribute} attribute by looking up the movie if it is missing" do
         movie = TMDBParty::Movie.new({ 'id' => 1858 }, TMDBParty::Base.new('key'))

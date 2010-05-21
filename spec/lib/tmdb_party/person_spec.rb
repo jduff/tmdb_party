@@ -7,6 +7,10 @@ describe TMDBParty::Person do
   
   let(:megan) { TMDBParty::Person.new(person, TMDBParty::Base.new('key')) }
 
+  it "should have a score when coming from search results" do
+    TMDBParty::Person.new({'score' => '0.374527342'}, TMDBParty::Base.new('key')).score.should == 0.374527342
+  end
+  
   it "should have an id" do
     megan.id.should == 19537
   end
