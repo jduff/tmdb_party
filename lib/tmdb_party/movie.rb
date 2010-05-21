@@ -14,7 +14,7 @@ module TMDBParty
     attributes :trailer, :lazy => :get_info!
     attributes :runtime, :lazy => :get_info!, :type => Integer
     attributes :genres, :lazy => :get_info!, :type => Genre
-    attributes :cast, :lazy => :get_info!, :type => Person
+    attributes :cast, :lazy => :get_info!, :type => CastMember
     attributes :countries, :lazy => :get_info!, :type => Country
     attributes :studios, :lazy => :get_info!, :type => Studio
     

@@ -1,7 +1,7 @@
 # gem 'httparty'
 require 'httparty'
 
-%w[core_extensions httparty_icebox attributes video genre person image country studio movie].each do |class_name|
+%w[core_extensions httparty_icebox attributes video genre person image country studio cast_member movie].each do |class_name|
   require "tmdb_party/#{class_name}"
 end
 
