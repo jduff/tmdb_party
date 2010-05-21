@@ -28,6 +28,15 @@ module TMDBParty
       end
     end
     
+    def search_person(query)
+      data = self.class.get(method_url('Person.search', query))
+      if data.class != Array || data.first == "Nothing found."
+        []
+      else
+        data.collect { |person| Person.new(person) }
+      end
+    end
+    
     def imdb_lookup(imdb_id)
       data = self.class.get(method_url('Movie.imdbLookup', imdb_id))
       if data.class != Array || data.first == "Nothing found."

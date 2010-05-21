@@ -25,11 +25,6 @@ describe TMDBParty::Base do
       tmdb.search('Transformers').first.should be_instance_of(TMDBParty::Movie)
     end
     
-    it "should populate score for all movies" do
-      stub_get('/Movie.search/en/json/key/Transformers', 'search.json')
-      tmdb.search('Transformers').map { |m| m.score }.should == [1.0, 0.292378753423691, 0.0227534640580416, 0.0150842536240816, 0.00380283431150019]
-    end
-    
     it "should use the preferred language" do
       stub_get('/Movie.search/en/json/key/Transformers', 'shitty_shit_result.json')
       stub_get('/Movie.search/sv/json/key/Transformers', 'search.json')
@@ -68,6 +63,26 @@ describe TMDBParty::Base do
       stub_get('/Movie.getInfo/sv/json/key/1858', 'transformers.json')
       
       TMDBParty::Base.new('key', 'sv').get_info(1858).should_not be_nil
+    end
+  end
+  
+  describe "#search_person" do
+    it "should return empty array when no people was found" do
+      stub_get('/Person.search/en/json/key/Megatron%20Fox', 'nothing_found.json')
+      tmdb.search_person('Megatron Fox').should be_empty
+    end
+    
+    it "should return instances of Person" do
+      stub_get('/Person.search/en/json/key/Megan%20Fox', 'search_person.json')
+      tmdb.search_person('Megan Fox').should have(1).person
+      tmdb.search_person('Megan Fox').first.should be_instance_of(TMDBParty::Person)
+    end
+    
+    it "should use the preferred language" do
+      stub_get('/Person.search/en/json/key/Megan%20Fox', 'shitty_shit_result.json')
+      stub_get('/Person.search/sv/json/key/Megan%20Fox', 'search_person.json')
+      
+      TMDBParty::Base.new('key', 'sv').search_person('Megan Fox').should have(1).movie
     end
   end
   
