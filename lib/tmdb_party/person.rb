@@ -2,7 +2,7 @@ module TMDBParty
   class Person
     include Attributes
     attr_reader :tmdb
-    attributes :id, :type => Integer
+    attributes :id, :popularity, :type => Integer
     attributes :name, :url, :biography
     
     attributes :birthplace, :birthday, :lazy => :get_info!

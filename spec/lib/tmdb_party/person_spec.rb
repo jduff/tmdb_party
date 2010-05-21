@@ -14,6 +14,10 @@ describe TMDBParty::Person do
   it "should have a name" do
     megan.name.should == "Megan Fox"
   end
+  
+  it "should have a popularity" do
+    megan.popularity.should == 3
+  end
 
   it "should have a url" do
     megan.url.should == "http://www.themoviedb.org/person/19537"
