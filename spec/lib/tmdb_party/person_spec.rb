@@ -5,7 +5,7 @@ describe TMDBParty::Person do
     HTTParty::Parser.call(fixture_file('megan_fox.json'), :json).first
   end
   
-  let(:megan) { TMDBParty::Person.new(person) }
+  let(:megan) { TMDBParty::Person.new(person, TMDBParty::Base.new('key')) }
 
   it "should have an id" do
     megan.id.should == 19537
@@ -18,10 +18,13 @@ describe TMDBParty::Person do
   it "should have a url" do
     megan.url.should == "http://www.themoviedb.org/person/19537"
   end
-
-  it ".parse should return an array" do
-    TMDBParty::Person.parse(person).should be_instance_of(Array)
-    TMDBParty::Person.parse(person).first.should be_instance_of(TMDBParty::Person)
+  
+  it "should have a birthplace" do
+    megan.birthplace.should == "Oakridge, TN"
   end
   
+  it "should have a birthday" do
+    megan.birthday.should == Date.new(1986, 5, 16)
+  end
+
 end

@@ -1,22 +1,21 @@
 module TMDBParty
   class Person
     include Attributes
-    attributes :name, :url
+    attr_reader :tmdb
     attributes :id, :type => Integer
+    attributes :name, :url
     
-    def initialize(values)
+    attributes :birthplace, :birthday, :lazy => :get_info!
+    
+    def initialize(values, tmdb)
+      @tmdb = tmdb
       self.attributes = values
     end
     
-    def self.parse(data)
-      return unless data
-      if data.is_a?(Array)
-        data.collect do |person|
-          Person.new(person)
-        end
-      else
-        [Person.new(data)]
-      end
+    def get_info!
+      person = tmdb.get_person(self.id)
+      @attributes.merge!(person.attributes) if person
+      @loaded = true
     end
   end
 end

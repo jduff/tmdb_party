@@ -33,7 +33,7 @@ module TMDBParty
       if data.class != Array || data.first == "Nothing found."
         []
       else
-        data.collect { |person| Person.new(person) }
+        data.collect { |person| Person.new(person, self) }
       end
     end
     
@@ -53,7 +53,7 @@ module TMDBParty
     
     def get_person(id)
       data = self.class.get(method_url('Person.getInfo', id))
-      Person.new(data.first)
+      Person.new(data.first, self)
     end
     
     private
