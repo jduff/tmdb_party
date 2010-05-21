@@ -3,10 +3,10 @@ module TMDBParty
     include Attributes
     attr_reader :tmdb
     
-    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title, :translated, :certification
+    attributes :name, :overview, :id, :imdb_id, :movie_type, :url, :alternative_title, :translated, :certification
     attributes :released
-    attributes :id, :type => Integer
-    attributes :popularity, :score, :type => Float
+    attributes :id, :popularity, :type => Integer
+    attributes :score, :type => Float
     
     attributes :tagline, :lazy => :get_info!
     attributes :posters, :backdrops, :lazy => :get_info!, :type => Image
