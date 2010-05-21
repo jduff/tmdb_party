@@ -14,7 +14,6 @@ module TMDBParty
     attributes :trailer, :lazy => :get_info!
     attributes :runtime, :lazy => :get_info!, :type => Integer
     attributes :genres, :lazy => :get_info!, :type => Genre
-    attributes :cast, :lazy => :get_info!, :type => CastMember
     attributes :countries, :lazy => :get_info!, :type => Country
     attributes :studios, :lazy => :get_info!, :type => Studio
     
@@ -29,6 +28,11 @@ module TMDBParty
       movie = tmdb.get_info(self.id)
       @attributes.merge!(movie.attributes) if movie
       @loaded = true
+    end
+
+    def cast
+      # TODO: This needs refactoring
+      CastMember.parse(read_or_load_attribute('cast', nil, :get_info!), tmdb)
     end
 
     def language

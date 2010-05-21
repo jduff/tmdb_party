@@ -1,10 +1,12 @@
 module TMDBParty
   class CastMember
     include Attributes
+    attr_reader :tmdb
     attributes :name, :url, :job
     attributes :id, :type => Integer
     
-    def initialize(values)
+    def initialize(values, tmdb)
+      @tmdb = tmdb
       self.attributes = values
     end
     
@@ -16,14 +18,18 @@ module TMDBParty
       read_attribute('profile')
     end
     
-    def self.parse(data)
+    def person
+      tmdb.get_person(id)
+    end
+    
+    def self.parse(data, tmdb)
       return unless data
       if data.is_a?(Array)
         data.collect do |person|
-          CastMember.new(person)
+          CastMember.new(person, tmdb)
         end
       else
-        [CastMember.new(data)]
+        [CastMember.new(data, tmdb)]
       end
     end
   end

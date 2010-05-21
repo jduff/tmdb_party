@@ -12,7 +12,7 @@ describe TMDBParty::CastMember do
     }
   end
 
-  let(:megan) { TMDBParty::CastMember.new(cast_member) }
+  let(:megan) { TMDBParty::CastMember.new(cast_member, TMDBParty::Base.new('key')) }
   
   it "should have an id" do
     megan.id.should == 19537
@@ -37,10 +37,16 @@ describe TMDBParty::CastMember do
   it "should have a job" do
     megan.job.should == 'Actor'
   end
+  
+  it "should have a person" do
+    stub_get('/Person.getInfo/en/json/key/19537', 'megan_fox.json')
+    megan.person.should be_instance_of(TMDBParty::Person)
+  end
 
   it ".parse should return an array" do
-    TMDBParty::CastMember.parse(cast_member).should be_instance_of(Array)
-    TMDBParty::CastMember.parse(cast_member).first.should be_instance_of(TMDBParty::CastMember)
+    tmdb = TMDBParty::Base.new('key')
+    TMDBParty::CastMember.parse(cast_member, tmdb).should be_instance_of(Array)
+    TMDBParty::CastMember.parse(cast_member, tmdb).first.should be_instance_of(TMDBParty::CastMember)
   end
   
 end
