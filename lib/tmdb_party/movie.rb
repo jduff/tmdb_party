@@ -45,15 +45,19 @@ module TMDBParty
     end
 
     def directors
-      find_cast('Director')
+      find_cast('Directing')
     end
 
     def actors
-      find_cast('Actor')
+      find_cast('Actors')
     end
 
     def writers
-      find_cast('Writer')
+      find_cast('Writing')
+    end
+
+    def producers
+      find_cast('Production')
     end
     
     private

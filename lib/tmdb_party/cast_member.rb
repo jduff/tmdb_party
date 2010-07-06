@@ -2,7 +2,7 @@ module TMDBParty
   class CastMember
     include Attributes
     attr_reader :tmdb
-    attributes :name, :url, :job
+    attributes :name, :url, :job, :department
     attributes :id, :type => Integer
     
     def initialize(values, tmdb)
