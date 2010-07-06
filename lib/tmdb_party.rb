@@ -1,13 +1,9 @@
 # gem 'httparty'
 require 'httparty'
-require 'tmdb_party/core_extensions'
-require 'tmdb_party/httparty_icebox'
-require 'tmdb_party/attributes'
-require 'tmdb_party/video'
-require 'tmdb_party/genre'
-require 'tmdb_party/person'
-require 'tmdb_party/image'
-require 'tmdb_party/movie'
+
+%w[core_extensions httparty_icebox attributes video genre person image country studio cast_member movie].each do |class_name|
+  require "tmdb_party/#{class_name}"
+end
 
 module TMDBParty
   class Base
@@ -18,18 +14,13 @@ module TMDBParty
     base_uri 'http://api.themoviedb.org/2.1'
     format :json
     
-    def initialize(key)
+    def initialize(key, lang = 'en')
       @api_key = key
-    end
-    
-    def default_path_items
-      path_items = ['en']
-      path_items << 'json'
-      path_items << @api_key
+      @lang = lang
     end
     
     def search(query)
-      data = self.class.get("/Movie.search/" + default_path_items.join('/') + '/' + URI.escape(query))
+      data = self.class.get(method_url('Movie.search', query))
       if data.class != Array || data.first == "Nothing found."
         []
       else
@@ -37,8 +28,17 @@ module TMDBParty
       end
     end
     
+    def search_person(query)
+      data = self.class.get(method_url('Person.search', query))
+      if data.class != Array || data.first == "Nothing found."
+        []
+      else
+        data.collect { |person| Person.new(person, self) }
+      end
+    end
+    
     def imdb_lookup(imdb_id)
-      data = self.class.get("/Movie.imdbLookup/" + default_path_items.join('/') + '/' + imdb_id)
+      data = self.class.get(method_url('Movie.imdbLookup', imdb_id))
       if data.class != Array || data.first == "Nothing found."
         nil
       else
@@ -47,8 +47,22 @@ module TMDBParty
     end
     
     def get_info(id)
-      data = self.class.get("/Movie.getInfo/" + default_path_items.join('/') + '/' + id.to_s)
+      data = self.class.get(method_url('Movie.getInfo', id))
       Movie.new(data.first, self)
     end
+    
+    def get_person(id)
+      data = self.class.get(method_url('Person.getInfo', id))
+      Person.new(data.first, self)
+    end
+    
+    private
+      def default_path_items
+        [@lang, 'json', @api_key]
+      end
+      
+      def method_url(method, value)
+        '/' + ([method] + default_path_items + [URI.escape(value.to_s)]).join('/')
+      end
   end
 end

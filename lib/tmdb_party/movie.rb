@@ -3,20 +3,21 @@ module TMDBParty
     include Attributes
     attr_reader :tmdb
     
-    attributes :name, :overview, :id, :score, :imdb_id, :movie_type, :url, :popularity, :alternative_title
+    attributes :name, :overview, :id, :imdb_id, :movie_type, :url, :alternative_title, :translated, :certification
     attributes :released
-    attributes :id, :type => Integer
-    attributes :popularity, :score, :type => Float
+    attributes :id, :popularity, :type => Integer
+    attributes :score, :type => Float
     
-    attributes :posters, :backdrops, :lazy => :get_info!
+    attributes :tagline, :lazy => :get_info!
+    attributes :posters, :backdrops, :lazy => :get_info!, :type => Image
     attributes :homepage, :lazy => :get_info!
     attributes :trailer, :lazy => :get_info!
     attributes :runtime, :lazy => :get_info!, :type => Integer
     attributes :genres, :lazy => :get_info!, :type => Genre
-    attributes :cast, :lazy => :get_info!, :type => Person
+    attributes :countries, :lazy => :get_info!, :type => Country
+    attributes :studios, :lazy => :get_info!, :type => Studio
     
-    alias_method :flattened_posters, :posters
-    alias_method :flattened_backdrops, :backdrops
+    alias_method :translated?, :translated
     
     def initialize(values, tmdb)
       @tmdb = tmdb
@@ -27,6 +28,20 @@ module TMDBParty
       movie = tmdb.get_info(self.id)
       @attributes.merge!(movie.attributes) if movie
       @loaded = true
+    end
+
+    def cast
+      # TODO: This needs refactoring
+      CastMember.parse(read_or_load_attribute('cast', nil, :get_info!), tmdb)
+    end
+
+    def language
+      read_attribute('language').downcase.to_sym
+    end
+
+    def last_modified_at
+      # Date from TMDB is always in MST, but no timezone is present in date string
+      Time.parse(read_attribute('last_modified_at') + ' MST')
     end
 
     def directors
@@ -41,29 +56,7 @@ module TMDBParty
       find_cast('Writer')
     end
     
-    def posters
-      process_art(flattened_posters)
-    end
-
-    def backdrops
-      process_art(flattened_backdrops)
-    end
-    
-    
     private
-    
-    def process_art(art)
-      image_groups = {}
-      art.each do |image_hash|
-        the_image = image_hash["image"]
-        if image_groups[the_image["id"]]
-          image_groups[the_image["id"]][the_image["size"]] = the_image["url"]
-        else
-          image_groups[the_image["id"]] = {the_image["size"] => the_image["url"]}
-        end
-      end
-      image_groups.values
-    end
     
     def find_cast(type)
       return [] unless cast

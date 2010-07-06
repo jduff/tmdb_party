@@ -1,5 +1,9 @@
 [{
-    "studios": [],
+    "studios": [{
+      "name": "DreamWorks SKG",
+      "url": "http:\/\/www.themoviedb.org\/company\/38"
+    }],
+    "translated": true,
     "rating": "7.46667",
     "alternative_name": "The Transformers",
     "name": "Transformers",
@@ -7,6 +11,10 @@
     "overview": "The Earth is caught in the middle of an intergalactic war between two races of robots, the heroic Autobots and the evil Decepticons, which are able to change into a variety of objects, including cars, trucks, planes and other technological creations.",
     "url": "http:\/\/www.themoviedb.org\/movie\/1858",
     "id": 1858,
+    "language": "en",
+    "imdb_id": "tt0418279",
+    "tagline": "Their war. Our world.",
+    "certification": "PG-13",
     "posters": [{
         "image": {
             "size": "original",
@@ -883,7 +891,11 @@
         "id": "10631",
         "job": "Special Effects"
     }],
-    "countries": [],
+    "countries": [{
+        "code": "US",
+        "name": "United States of America",
+        "url": "http://www.themoviedb.org/country/us"
+    }],
     "genres": [{
         "name": "Action",
         "url": "http:\/\/themoviedb.org\/encyclopedia\/category\/28"
@@ -899,5 +911,6 @@
     "budget": 150000000,
     "movie_type": "movie",
     "revenue": 708226810,
-    "popularity": 52
+    "popularity": 52,
+    "last_modified_at": "2010-05-07 15:53:59"
 }]

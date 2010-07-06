@@ -1,14 +1,10 @@
 require 'rubygems'
-require 'test/unit'
-require 'context'
 require 'fakeweb'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'tmdb_party'
 
-class Test::Unit::TestCase
-end
+require 'tmdb_party'
 
 def fixture_file(filename)
   return '' if filename == ''
@@ -25,8 +21,4 @@ def stub_get(url, filename, status=nil)
   options.merge!({:status => status}) unless status.nil?
   
   FakeWeb.register_uri(:get, tmdb_url(url), options)
-end
- 
-def stub_post(url, filename)
-  FakeWeb.register_uri(:post, tmdb_url(url), :string => fixture_file(filename))
 end

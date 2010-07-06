@@ -1,21 +1,29 @@
 module TMDBParty
   class Person
     include Attributes
-    attributes :name, :url, :job
+    attr_reader :tmdb
+    attributes :id, :popularity, :type => Integer
+    attributes :score, :type => Float
+    attributes :name, :url, :biography
     
-    def initialize(values)
+    attributes :birthplace, :birthday, :lazy => :get_info!
+    
+    def initialize(values, tmdb)
+      @tmdb = tmdb
       self.attributes = values
     end
     
-    def self.parse(data)
-      return unless data
-      if data.is_a?(Array)
-        data.collect do |person|
-          Person.new(person)
-        end
-      else
-        [Person.new(data)]
-      end
+    def biography
+      # HTTParty does not parse the encoded hexadecimal properly. It does not consider 000F to be a hex, but 000f is
+      # A bug has been submitted about this
+      read_attribute('biography').gsub("\\n", "\n").gsub(/\\u([0-9A-F]{4})/) { [$1.hex].pack("U") }
+    end
+    
+    
+    def get_info!
+      person = tmdb.get_person(self.id)
+      @attributes.merge!(person.attributes) if person
+      @loaded = true
     end
   end
 end

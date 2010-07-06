@@ -4,6 +4,7 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
 
 = usage:
   sudo gem install tmdb_party -s http://gemcutter.org
+  require 'rubygems'
   require 'tmdb_party'
 
 = example:
@@ -14,7 +15,7 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
   results.length
     # => 5
 
-  transformers = results.detect{|m| m.title == "Transformers"}
+  transformers = results.detect{|m| m.name == "Transformers"}
 
   transformers.popularity
     # => 31
@@ -37,6 +38,7 @@ It's a movie database, kind of like IMDB except it's more of a community wiki. T
 
 == Contributors
 Jon Maddox (http://github.com/maddox)
+Magnus Bergmark (http://github.com/Mange)
 
 == Copyright
 
