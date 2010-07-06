@@ -64,7 +64,7 @@ module TMDBParty
     
     def find_cast(type)
       return [] unless cast
-      guys = cast.select{|c| c.job == type}
+      guys = cast.select{|c| c.department == type}
     end
 
   end
