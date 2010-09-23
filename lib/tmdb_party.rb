@@ -1,4 +1,3 @@
-# gem 'httparty'
 require 'httparty'
 
 %w[core_extensions httparty_icebox attributes video genre person image country studio cast_member movie].each do |class_name|
@@ -20,7 +19,7 @@ module TMDBParty
     end
     
     def search(query)
-      data = self.class.get(method_url('Movie.search', query))
+      data = self.class.get(method_url('Movie.search', query)).parsed_response
       if data.class != Array || data.first == "Nothing found."
         []
       else
@@ -29,7 +28,7 @@ module TMDBParty
     end
     
     def search_person(query)
-      data = self.class.get(method_url('Person.search', query))
+      data = self.class.get(method_url('Person.search', query)).parsed_response
       if data.class != Array || data.first == "Nothing found."
         []
       else
@@ -38,7 +37,7 @@ module TMDBParty
     end
     
     def imdb_lookup(imdb_id)
-      data = self.class.get(method_url('Movie.imdbLookup', imdb_id))
+      data = self.class.get(method_url('Movie.imdbLookup', imdb_id)).parsed_response
       if data.class != Array || data.first == "Nothing found."
         nil
       else
@@ -47,12 +46,12 @@ module TMDBParty
     end
     
     def get_info(id)
-      data = self.class.get(method_url('Movie.getInfo', id))
+      data = self.class.get(method_url('Movie.getInfo', id)).parsed_response
       Movie.new(data.first, self)
     end
     
     def get_person(id)
-      data = self.class.get(method_url('Person.getInfo', id))
+      data = self.class.get(method_url('Person.getInfo', id)).parsed_response
       Person.new(data.first, self)
     end
     
