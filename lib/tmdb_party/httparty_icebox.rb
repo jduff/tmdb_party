@@ -23,7 +23,7 @@
 # 
 
 require 'logger'
-require 'ftools'
+require 'filetools'
 require 'tmpdir'
 require 'pathname'
 require 'digest/md5'
