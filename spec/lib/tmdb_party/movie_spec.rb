@@ -59,7 +59,7 @@ describe TMDBParty::Movie do
     end
     
     it "should have a last modified at timestamp" do
-      transformers_movie.last_modified_at.should == Time.parse('2010-05-07 22:53:59 UTC')
+      transformers_movie.last_modified_at.should == Time.parse('Sat Jan 15 02:02:30 -0500 2011')
     end
     
     it "should have a cast" do
@@ -76,24 +76,24 @@ describe TMDBParty::Movie do
     end
     
     it "should have a list of writers" do
-      transformers_movie.writers.should == []
+      transformers_movie.should have(3).writers
     end
     
     it "should have a list of poster images" do
-      transformers_movie.should have(10).posters
+      transformers_movie.should have(18).posters
       poster = transformers_movie.posters.first
       poster.sizes.should include(:cover, :thumb, :mid, :original)
     end
     
     it "should have a list of backdrop images" do
-      transformers_movie.should have(11).backdrops
+      transformers_movie.should have(13).backdrops
       backdrop = transformers_movie.backdrops.first
       backdrop.sizes.should include(:thumb, :poster, :original)
     end
     
     it "should have a list of genres" do
       transformers_movie.should have(3).genres
-      transformers_movie.genres.map { |g| g.name }.should include('Action', 'Adventure', 'Science Fiction')
+      transformers_movie.genres.map { |g| g.name }.should include('Action', 'Thriller', 'Science Fiction')
     end
     
     it "should have a list of countries" do
