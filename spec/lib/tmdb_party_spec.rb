@@ -29,7 +29,7 @@ describe TMDBParty::Base do
       stub_get('/Movie.search/en/json/key/Transformers', 'shitty_shit_result.json')
       stub_get('/Movie.search/sv/json/key/Transformers', 'search.json')
       
-      TMDBParty::Base.new('key', 'sv').search('Transformers').should have(5).movies
+      tmdb.search('Transformers', 'sv').should have(5).movies
     end
   end
   
@@ -48,7 +48,7 @@ describe TMDBParty::Base do
       stub_get('/Movie.imdbLookup/en/json/key/tt0418279', 'shitty_shit_result.json')
       stub_get('/Movie.imdbLookup/sv/json/key/tt0418279', 'imdb_search.json')
       
-      TMDBParty::Base.new('key', 'sv').imdb_lookup('tt0418279').should_not be_nil
+      tmdb.imdb_lookup('tt0418279', 'sv').should_not be_nil
     end
   end
   
@@ -62,7 +62,7 @@ describe TMDBParty::Base do
       stub_get('/Movie.getInfo/en/json/key/1858', 'shitty_shit_result.json')
       stub_get('/Movie.getInfo/sv/json/key/1858', 'transformers.json')
       
-      TMDBParty::Base.new('key', 'sv').get_info(1858).should_not be_nil
+      tmdb.get_info(1858, 'sv').should_not be_nil
     end
   end
   
@@ -82,7 +82,7 @@ describe TMDBParty::Base do
       stub_get('/Person.search/en/json/key/Megan%20Fox', 'shitty_shit_result.json')
       stub_get('/Person.search/sv/json/key/Megan%20Fox', 'search_person.json')
       
-      TMDBParty::Base.new('key', 'sv').search_person('Megan Fox').should have(1).movie
+      tmdb.search_person('Megan Fox', 'sv').should have(1).movie
     end
   end
   
@@ -96,8 +96,22 @@ describe TMDBParty::Base do
       stub_get('/Person.getInfo/en/json/key/19537', 'shitty_shit_result.json')
       stub_get('/Person.getInfo/sv/json/key/19537', 'megan_fox.json')
       
-      TMDBParty::Base.new('key', 'sv').get_person(19537).name.should == 'Megan Fox'
+      tmdb.get_person(19537, 'sv').name.should == 'Megan Fox'
     end
   end
   
+  describe "#get_genres" do
+    it "should return instances of Genre" do
+      stub_get('/Genres.getList/en/json/key', 'genres_results.json')
+      tmdb.get_genres.should have(33).genre
+      tmdb.get_genres.first.should be_instance_of(TMDBParty::Genre)
+    end
+    
+    it "should use the preferred language" do
+      stub_get('/Genres.getList/en/json/key', 'shitty_shit_result.json')
+      stub_get('/Genres.getList/sv/json/key', 'genres_results.json')
+      
+      tmdb.get_genres('sv').first.name.should == 'Action'
+    end
+  end
 end

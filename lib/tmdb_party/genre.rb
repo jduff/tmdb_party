@@ -1,6 +1,7 @@
 module TMDBParty
   class Genre
     include Attributes
+    attributes :id, :type => Integer
     attributes :name, :url
     
     def initialize(values)

@@ -15,11 +15,11 @@ module TMDBParty
     
     def initialize(key, lang = 'en')
       @api_key = key
-      @lang = lang
+      @default_lang = lang
     end
     
-    def search(query)
-      data = self.class.get(method_url('Movie.search', query)).parsed_response
+    def search(query, lang = @default_lang)
+      data = self.class.get(method_url('Movie.search', query, lang)).parsed_response
       if data.class != Array || data.first == "Nothing found."
         []
       else
@@ -27,8 +27,8 @@ module TMDBParty
       end
     end
     
-    def search_person(query)
-      data = self.class.get(method_url('Person.search', query)).parsed_response
+    def search_person(query, lang = @default_lang)
+      data = self.class.get(method_url('Person.search', query, lang)).parsed_response
       if data.class != Array || data.first == "Nothing found."
         []
       else
@@ -36,8 +36,8 @@ module TMDBParty
       end
     end
     
-    def imdb_lookup(imdb_id)
-      data = self.class.get(method_url('Movie.imdbLookup', imdb_id)).parsed_response
+    def imdb_lookup(imdb_id, lang = @default_lang)
+      data = self.class.get(method_url('Movie.imdbLookup', imdb_id, lang)).parsed_response
       if data.class != Array || data.first == "Nothing found."
         nil
       else
@@ -45,23 +45,30 @@ module TMDBParty
       end
     end
     
-    def get_info(id)
-      data = self.class.get(method_url('Movie.getInfo', id)).parsed_response
+    def get_info(id, lang = @default_lang)
+      data = self.class.get(method_url('Movie.getInfo', id, lang)).parsed_response
       Movie.new(data.first, self)
     end
     
-    def get_person(id)
-      data = self.class.get(method_url('Person.getInfo', id)).parsed_response
+    def get_person(id, lang = @default_lang)
+      data = self.class.get(method_url('Person.getInfo', id, lang)).parsed_response
       Person.new(data.first, self)
+    end
+    
+    def get_genres(lang = @default_lang)
+      data = self.class.get(method_url('Genres.getList', nil, lang)).parsed_response
+      data[1..-1].collect { |genre| Genre.new(genre) } # Skips the first, see spec/fixtures/genres_results.json
     end
     
     private
       def default_path_items
-        [@lang, 'json', @api_key]
+        ['json', @api_key]
       end
       
-      def method_url(method, value)
-        '/' + ([method] + default_path_items + [URI.escape(value.to_s)]).join('/')
+      def method_url(method, value, lang)
+        url = [method, lang, default_path_items]
+        url << URI.escape(value.to_s) if value
+        '/' + url.join('/')
       end
   end
 end
