@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'httparty'
 
 describe TMDBParty::Movie do
   before(:each) do
