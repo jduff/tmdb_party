@@ -12,7 +12,7 @@ module TMDBParty
 
     module ClassMethods
       def attributes(*names)
-        options = names.extract_options!
+        options = names.last.is_a?(::Hash) ? names.pop : {}
 
         names.each do |name|
           attribute name, options unless name.blank?
@@ -60,7 +60,16 @@ module TMDBParty
         
         def decode_raw_attribute(value, type)
           return nil unless value
-          type.respond_to?(:parse) ? type.parse(value) : value
+
+          if type.respond_to?(:parse)
+            type.parse(value)
+          elsif type == Integer
+            Integer(value)
+          elsif type == Float
+            Float(value)
+          else
+            value
+          end
         end
         
     end
