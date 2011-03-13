@@ -33,13 +33,30 @@ Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) usin
   transformers.genres.collect{|cat| cat.name}.include?("Adventure")
     # => true
 
+= recent additions:
+
+  # Support for browsing movies http://api.themoviedb.org/2.1/methods/Movie.browse
+  @tmdb.browse({:query => 'Transformers')
+
+  # Support for looking up Media info based on the file hash
+  # http://api.themoviedb.org/2.1/methods/Media.getInfo
+  @tmdb.get_file_info(file)
+
+  # Support for Language Tags http://api.themoviedb.org/2.1/language-tags
+  # All methods support an optional locale as the final method parameter
+  @tmdb.search('transformers', 'fr')
+
 = what is themoviedb.org?
-It's a movie database, kind of like IMDB except it's more of a community wiki. They also have an api that they're cool with people using. More on the api here: http://api.themoviedb.org/2.0/docs/
+It's a movie database, kind of like IMDB except it's more of a community wiki. They also have an api that they're cool with people using. More on the api here: http://api.themoviedb.org/2.1
 
 == Contributors
+
 Jon Maddox (http://github.com/maddox)
+
 Magnus Bergmark (http://github.com/Mange)
+
 Brian Lopez (https://github.com/brianmario)
+
 Federico Ravasio (https://github.com/razielgn)
 
 == Copyright
