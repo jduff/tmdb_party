@@ -26,6 +26,17 @@ module TMDBParty
         data.collect { |movie| Movie.new(movie, self) }
       end
     end
+
+    # Read more about the parameters that can be passed to this method here:
+    # http://api.themoviedb.org/2.1/methods/Movie.browse
+    def browse(params = {}, lang = @default_lang)
+      data = self.class.get(method_url('Movie.browse', lang), :query => {:order => "asc", :order_by => "title"}.merge(params)).parsed_response
+      if data.class != Array || data.first == "Nothing found."
+        []
+      else
+        data.collect { |movie| Movie.new(movie, self) }
+      end
+    end
     
     def search_person(query, lang = @default_lang)
       data = self.class.get(method_url('Person.search', lang, query)).parsed_response

@@ -132,4 +132,27 @@ describe TMDBParty::Base do
       tmdb.get_genres('sv').first.name.should == 'Action'
     end
   end
+
+
+  describe "#browse" do
+    it "should return an empty array when no matches was found" do
+      stub_get('/Movie.browse/en/json/key?order=asc&order_by=title&query=NothingFound', 'nothing_found.json')
+
+      tmdb.browse(:query => 'NothingFound').should == []
+    end
+
+    it "should return an array of movies" do
+      stub_get('/Movie.browse/en/json/key?order=asc&order_by=title&query=Transformers', 'browse.json')
+
+      tmdb.browse(:query => 'Transformers').should have(12).movies
+      tmdb.browse(:query => 'Transformers').first.should be_instance_of(TMDBParty::Movie)
+    end
+
+    it "should use the preferred language" do
+      stub_get('/Movie.browse/en/json/key?order=asc&order_by=title&query=Transformers', 'shitty_shit_result.json')
+      stub_get('/Movie.browse/sv/json/key?order=asc&order_by=title&query=Transformers', 'browse.json')
+
+      tmdb.browse({:query => 'Transformers'}, 'sv').should have(12).movies
+    end
+  end
 end
