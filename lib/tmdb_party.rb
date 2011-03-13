@@ -1,6 +1,6 @@
 require 'httparty'
 
-%w[extras/httparty_icebox extras/attributes video genre person image country studio cast_member movie].each do |class_name|
+%w[extras/httparty_icebox extras/attributes video genre person image country studio cast_member movie extras/movie_hasher].each do |class_name|
   require "tmdb_party/#{class_name}"
 end
 
@@ -49,7 +49,19 @@ module TMDBParty
       data = self.class.get(method_url('Movie.getInfo', lang, id)).parsed_response
       Movie.new(data.first, self)
     end
-    
+
+    def get_file_info(file, lang=@default_lang)
+      hash = TMDBParty::MovieHasher.compute_hash(file)
+      bytesize = file.size
+      data = self.class.get(method_url('Media.getInfo', lang, hash, bytesize)).parsed_response
+
+      if data.class != Array || data.first == "Nothing found."
+        []
+      else
+        data.collect { |movie| Movie.new(movie, self) }
+      end
+    end
+
     def get_person(id, lang = @default_lang)
       data = self.class.get(method_url('Person.getInfo', lang, id)).parsed_response
       Person.new(data.first, self)

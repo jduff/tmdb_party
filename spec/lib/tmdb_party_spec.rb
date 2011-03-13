@@ -65,6 +65,24 @@ describe TMDBParty::Base do
       tmdb.get_info(1858, 'sv').should_not be_nil
     end
   end
+
+  describe "#get_info with file" do
+    it "should return a movie instance" do
+      file = mock("file")
+      file.should_receive(:size).and_return(742086656)
+      TMDBParty::MovieHasher.should_receive(:compute_hash).with(file).and_return("907172e7fe51ba57")
+      stub_get('/Media.getInfo/en/json/key/907172e7fe51ba57/742086656', 'transformers.json')
+      tmdb.get_file_info(file).should have(1).movies
+    end
+
+    it "should return empty array when no movie found" do
+      file = mock("file")
+      file.should_receive(:size).and_return("fake")
+      TMDBParty::MovieHasher.should_receive(:compute_hash).with(file).and_return("fake")
+      stub_get('/Media.getInfo/en/json/key/fake/fake', 'nothing_found.json')
+      tmdb.get_file_info(file).should == []
+    end
+  end
   
   describe "#search_person" do
     it "should return empty array when no people was found" do
