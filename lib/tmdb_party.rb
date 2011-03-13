@@ -84,14 +84,11 @@ module TMDBParty
     end
     
     private
-      def default_path_items
-        ['json', @api_key]
-      end
-      
-      def method_url(method, lang, *args)
-        url = [method, lang, default_path_items]
-        url += args.collect{ |a| URI.escape(a.to_s) }
-        '/' + url.join('/')
-      end
+
+    def method_url(method, lang, *args)
+      url = [method, lang, self.class.format, @api_key]
+      url += args.collect{ |a| URI.escape(a.to_s) }
+      '/' + url.join('/')
+    end
   end
 end
