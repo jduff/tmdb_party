@@ -19,32 +19,23 @@ module TMDBParty
     end
     
     def search(query, lang = @default_lang)
-      data = self.class.get(method_url('Movie.search', lang, query)).parsed_response
-      if data.class != Array || data.first == "Nothing found."
-        []
-      else
-        data.collect { |movie| Movie.new(movie, self) }
-      end
+      data = self.class.get(method_url('Movie.search', lang, query))
+      
+      result_or_empty_array(data, Movie)
     end
 
     # Read more about the parameters that can be passed to this method here:
     # http://api.themoviedb.org/2.1/methods/Movie.browse
     def browse(params = {}, lang = @default_lang)
-      data = self.class.get(method_url('Movie.browse', lang), :query => {:order => "asc", :order_by => "title"}.merge(params)).parsed_response
-      if data.class != Array || data.first == "Nothing found."
-        []
-      else
-        data.collect { |movie| Movie.new(movie, self) }
-      end
+      data = self.class.get(method_url('Movie.browse', lang), :query => {:order => "asc", :order_by => "title"}.merge(params))
+      
+      result_or_empty_array(data, Movie)
     end
     
     def search_person(query, lang = @default_lang)
-      data = self.class.get(method_url('Person.search', lang, query)).parsed_response
-      if data.class != Array || data.first == "Nothing found."
-        []
-      else
-        data.collect { |person| Person.new(person, self) }
-      end
+      data = self.class.get(method_url('Person.search', lang, query))
+      
+      result_or_empty_array(data, Person)
     end
     
     def imdb_lookup(imdb_id, lang = @default_lang)
@@ -64,13 +55,9 @@ module TMDBParty
     def get_file_info(file, lang=@default_lang)
       hash = TMDBParty::MovieHasher.compute_hash(file)
       bytesize = file.size
-      data = self.class.get(method_url('Media.getInfo', lang, hash, bytesize)).parsed_response
+      data = self.class.get(method_url('Media.getInfo', lang, hash, bytesize))
 
-      if data.class != Array || data.first == "Nothing found."
-        []
-      else
-        data.collect { |movie| Movie.new(movie, self) }
-      end
+      result_or_empty_array(data, Movie)
     end
 
     def get_person(id, lang = @default_lang)
@@ -84,6 +71,15 @@ module TMDBParty
     end
     
     private
+
+    def result_or_empty_array(data, klass)
+      data = data.parsed_response
+      if data.class != Array || data.first == "Nothing found."
+        []
+      else
+        data.collect { |object| klass.new(object, self) }
+      end
+    end
 
     def method_url(method, lang, *args)
       url = [method, lang, self.class.format, @api_key]
