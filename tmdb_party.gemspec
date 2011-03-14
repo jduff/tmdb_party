@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tmdb_party}
-  s.version = "0.8.0"
+  s.version = "0.9.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["John Duff", "Jon Maddox"]
-  s.date = %q{2011-01-29}
+  s.date = %q{2011-03-12}
   s.email = %q{duff.john@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -22,18 +22,19 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION.yml",
     "lib/tmdb_party.rb",
-    "lib/tmdb_party/attributes.rb",
     "lib/tmdb_party/cast_member.rb",
     "lib/tmdb_party/category.rb",
-    "lib/tmdb_party/core_extensions.rb",
     "lib/tmdb_party/country.rb",
+    "lib/tmdb_party/extras/attributes.rb",
+    "lib/tmdb_party/extras/httparty_icebox.rb",
+    "lib/tmdb_party/extras/movie_hasher.rb",
     "lib/tmdb_party/genre.rb",
-    "lib/tmdb_party/httparty_icebox.rb",
     "lib/tmdb_party/image.rb",
     "lib/tmdb_party/movie.rb",
     "lib/tmdb_party/person.rb",
     "lib/tmdb_party/studio.rb",
     "lib/tmdb_party/video.rb",
+    "spec/fixtures/browse.json",
     "spec/fixtures/genres_results.json",
     "spec/fixtures/imdb_no_results.json",
     "spec/fixtures/imdb_search.json",
@@ -48,6 +49,7 @@ Gem::Specification.new do |s|
     "spec/fixtures/transformers.json",
     "spec/lib/tmdb_party/cast_member_spec.rb",
     "spec/lib/tmdb_party/country_spec.rb",
+    "spec/lib/tmdb_party/extras/movie_hasher_spec.rb",
     "spec/lib/tmdb_party/genre_spec.rb",
     "spec/lib/tmdb_party/image_spec.rb",
     "spec/lib/tmdb_party/movie_spec.rb",
@@ -66,6 +68,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/lib/tmdb_party/cast_member_spec.rb",
     "spec/lib/tmdb_party/country_spec.rb",
+    "spec/lib/tmdb_party/extras/movie_hasher_spec.rb",
     "spec/lib/tmdb_party/genre_spec.rb",
     "spec/lib/tmdb_party/image_spec.rb",
     "spec/lib/tmdb_party/movie_spec.rb",
