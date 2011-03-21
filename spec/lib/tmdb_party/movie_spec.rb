@@ -10,27 +10,27 @@ describe TMDBParty::Movie do
   end
   
   let :transformers_movie do
-    TMDBParty::Movie.new(transformers, TMDBParty::Base.new('key'))
+    TMDBParty::Movie.new(transformers)
   end
   
   it "should take an attributes hash and a TMDBParty::Base instance when initialized" do
-    expect { TMDBParty::Movie.new({}, TMDBParty::Base.new('key')) }.to_not raise_error
+    expect { TMDBParty::Movie.new({}) }.to_not raise_error
   end
   
   describe "attributes" do
     it "should have a score when coming from search results" do
-      TMDBParty::Movie.new({'score' => '0.374527342'}, TMDBParty::Base.new('key')).score.should == 0.374527342
+      TMDBParty::Movie.new({'score' => '0.374527342'}).score.should == 0.374527342
     end
     
     [:posters, :backdrops, :homepage, :trailer, :runtime, :genres, :cast, :countries, :tagline, :studios].each do |attribute|
       it "should load #{attribute} attribute by looking up the movie if it is missing" do
-        movie = TMDBParty::Movie.new({ 'id' => 1858 }, TMDBParty::Base.new('key'))
+        movie = TMDBParty::Movie.new({ 'id' => 1858 })
         movie.send(attribute).should_not be_nil
       end
     
       it "should not look up the movie when #{attribute} is not missing" do
-        tmdb = mock(TMDBParty::Base)
-        movie = TMDBParty::Movie.new({ 'id' => 1858, attribute.to_s => transformers[attribute.to_s] }, tmdb)
+        tmdb = mock(TMDBParty.tmdb)
+        movie = TMDBParty::Movie.new({ 'id' => 1858, attribute.to_s => transformers[attribute.to_s] })
         
         tmdb.should_not_receive(:get_info)
         movie.send(attribute)

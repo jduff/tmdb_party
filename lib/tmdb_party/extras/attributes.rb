@@ -19,8 +19,16 @@ module TMDBParty
         end
       end
 
+      def lazy_callback sym=nil
+        if sym
+          @lazy_callback = sym
+        else
+          @lazy_callback || false
+        end
+      end
+
       def attribute(name, options)
-        options = {:type => 'nil', :lazy => false}.merge(options)
+        options = {:type => 'nil', :lazy => lazy_callback}.merge(options)
         raise ArgumentError, "Name can't be empty" if name.blank?
         
         class_eval <<-EVAL

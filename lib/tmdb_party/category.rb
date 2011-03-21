@@ -1,12 +1,8 @@
 module TMDBParty
-  class Category
-    include Attributes
+  class Category < Entity
     attributes :name, :url
     
-    def initialize(values)
-      self.attributes = values
-    end
-    
+    #FIXME This should work with the default Entity.parse
     def self.parse(data)
       return unless data
       data = data["category"]

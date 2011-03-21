@@ -1,38 +1,27 @@
 module TMDBParty
-  class Movie
-    include Attributes
-    attr_reader :tmdb
-    
-    attributes :name, :overview, :id, :imdb_id, :movie_type, :url, :alternative_title, :translated, :certification
-    attributes :released
+  class Movie < Entity
+    lazy_callback :get_info!
+    attributes :name, :overview, :id, :imdb_id, :movie_type, :url, :alternative_title, :translated, :certification, :released, :tagline, :homepage, :trailer
     attributes :id, :popularity, :type => Integer
     attributes :score, :type => Float
     
-    attributes :tagline, :lazy => :get_info!
-    attributes :posters, :backdrops, :lazy => :get_info!, :type => Image
-    attributes :homepage, :lazy => :get_info!
-    attributes :trailer, :lazy => :get_info!
-    attributes :runtime, :lazy => :get_info!, :type => Integer
-    attributes :genres, :lazy => :get_info!, :type => Genre
-    attributes :countries, :lazy => :get_info!, :type => Country
-    attributes :studios, :lazy => :get_info!, :type => Studio
+    attributes :posters, :backdrops, :type => Image
+    attributes :runtime,  :type => Integer
+    attributes :genres,   :type => Genre
+    attributes :countries,:type => Country
+    attributes :studios,  :type => Studio
     
     alias_method :translated?, :translated
     
-    def initialize(values, tmdb)
-      @tmdb = tmdb
-      self.attributes = values
-    end
-    
     def get_info!
-      movie = tmdb.get_info(self.id)
+      movie = TMDBParty.tmdb.get_info(self.id)
       @attributes.merge!(movie.attributes) if movie
       @loaded = true
     end
 
     def cast
       # TODO: This needs refactoring
-      CastMember.parse(read_or_load_attribute('cast', nil, :get_info!), tmdb)
+      CastMember.parse(read_or_load_attribute('cast', nil, :get_info!))
     end
 
     def language
@@ -66,7 +55,5 @@ module TMDBParty
       return [] unless cast
       guys = cast.select{|c| c.department == type}
     end
-
   end
-  
 end

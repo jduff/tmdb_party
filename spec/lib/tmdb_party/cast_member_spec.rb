@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe TMDBParty::CastMember do
+  before :each do
+    TMDBParty.api_key = "key"
+  end
   let :cast_member do
     {
       "name" => "Megan Fox",
@@ -12,7 +15,7 @@ describe TMDBParty::CastMember do
     }
   end
 
-  let(:megan) { TMDBParty::CastMember.new(cast_member, TMDBParty::Base.new('key')) }
+  let(:megan) { TMDBParty::CastMember.new(cast_member) }
   
   it "should have an id" do
     megan.id.should == 19537
@@ -45,8 +48,8 @@ describe TMDBParty::CastMember do
 
   it ".parse should return an array" do
     tmdb = TMDBParty::Base.new('key')
-    TMDBParty::CastMember.parse(cast_member, tmdb).should be_instance_of(Array)
-    TMDBParty::CastMember.parse(cast_member, tmdb).first.should be_instance_of(TMDBParty::CastMember)
+    TMDBParty::CastMember.parse(cast_member).should be_instance_of(Array)
+    TMDBParty::CastMember.parse(cast_member).first.should be_instance_of(TMDBParty::CastMember)
   end
   
 end

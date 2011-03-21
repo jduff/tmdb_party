@@ -5,11 +5,11 @@ describe TMDBParty::Person do
     HTTParty::Parser.call(fixture_file('megan_fox.json'), :json).first
   end
   
-  let(:megan) { TMDBParty::Person.new(person, TMDBParty::Base.new('key')) }
+  let(:megan) { TMDBParty::Person.new(person) }
 
   describe "attributes" do
     it "should have a score when coming from search results" do
-      TMDBParty::Person.new({'score' => '0.374527342'}, TMDBParty::Base.new('key')).score.should == 0.374527342
+      TMDBParty::Person.new({'score' => '0.374527342'}).score.should == 0.374527342
     end
   
     it "should have an id" do

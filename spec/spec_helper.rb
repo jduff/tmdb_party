@@ -22,3 +22,6 @@ def stub_get(url, filename, status=nil)
   
   FakeWeb.register_uri(:get, tmdb_url(url), options)
 end
+
+TMDBParty.api_key = "key"
+FakeWeb.allow_net_connect = false
