@@ -1,6 +1,10 @@
+lib = File.expand_path('../', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
+require 'bundler/setup'
 require 'httparty'
 
-%w[extras/httparty_icebox extras/attributes video genre person image country studio cast_member movie extras/movie_hasher].each do |class_name|
+%w[extras/httparty_icebox extras/attributes version video genre person image country studio cast_member movie extras/movie_hasher].each do |class_name|
   require "tmdb_party/#{class_name}"
 end
 

@@ -1,5 +1,10 @@
 *.sw?
+*.gem
+*.rbc
 .DS_Store
+.bundle/**
 coverage
 rdoc
 pkg
+vendor/**
+Gemfile.lock

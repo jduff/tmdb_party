@@ -3,7 +3,7 @@
 Simple ruby wrapper to themoviedb.org (http://api.themoviedb.org/2.0/docs/) using HTTParty
 
 = usage:
-  sudo gem install tmdb_party -s http://gemcutter.org
+  gem install tmdb_party
   require 'rubygems'
   require 'tmdb_party'
 
@@ -61,4 +61,4 @@ Federico Ravasio (https://github.com/razielgn)
 
 == Copyright
 
-Copyright (c) 2009 John Duff. See LICENSE for details.
+Copyright (c) 2011 John Duff. See LICENSE for details.
