@@ -1,5 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + '/lib')
 require 'rake'
+require 'bundler/setup'
+require 'rake/rdoctask'
 require 'yaml'
 require "rspec/core/rake_task"
 
@@ -20,7 +22,6 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "tmdb_party #{TMDBParty::VERSION}"
