@@ -1,17 +1,11 @@
 module TMDBParty
-  class Person
-    include Attributes
+  class Person < Entity
     attr_reader :tmdb
     attributes :id, :popularity, :type => Integer
     attributes :score, :type => Float
     attributes :name, :url, :biography
     
     attributes :birthplace, :birthday, :lazy => :get_info!
-    
-    def initialize(values, tmdb)
-      @tmdb = tmdb
-      self.attributes = values
-    end
     
     def biography
       # HTTParty does not parse the encoded hexadecimal properly. It does not consider 000F to be a hex, but 000f is
