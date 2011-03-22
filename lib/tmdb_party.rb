@@ -19,61 +19,56 @@ module TMDBParty
     end
     
     def search(query, lang = @default_lang)
-      data = self.class.get(method_url('Movie.search', lang, query))
-      
-      result_or_empty_array(data, Movie)
+      handle_response(Movie, 'Movie.search', lang, query)
     end
 
     # Read more about the parameters that can be passed to this method here:
     # http://api.themoviedb.org/2.1/methods/Movie.browse
     def browse(params = {}, lang = @default_lang)
-      data = self.class.get(method_url('Movie.browse', lang), :query => {:order => "asc", :order_by => "title"}.merge(params))
-      
-      result_or_empty_array(data, Movie)
+      handle_response(Movie, 'Movie.browse', lang, :query => {:order => "asc", :order_by => "title"}.merge(params))
     end
     
     def search_person(query, lang = @default_lang)
-      data = self.class.get(method_url('Person.search', lang, query))
-      
-      result_or_empty_array(data, Person)
+      handle_response(Person, 'Person.search', lang, query)
     end
     
     def imdb_lookup(imdb_id, lang = @default_lang)
-      data = self.class.get(method_url('Movie.imdbLookup', lang, imdb_id)).parsed_response
-      if data.class != Array || data.first == "Nothing found."
-        nil
-      else
-        Movie.new(data.first, self)
-      end
+      handle_response(Movie, 'Movie.imdbLookup', lang, imdb_id).first
     end
     
     def get_info(id, lang = @default_lang)
-      data = self.class.get(method_url('Movie.getInfo', lang, id)).parsed_response
-      Movie.new(data.first, self)
+      handle_response(Movie, 'Movie.getInfo', lang, id).first
     end
 
     def get_file_info(file, lang=@default_lang)
-      hash = TMDBParty::MovieHasher.compute_hash(file)
+      hash     = TMDBParty::MovieHasher.compute_hash(file)
       bytesize = file.size
-      data = self.class.get(method_url('Media.getInfo', lang, hash, bytesize))
-
-      result_or_empty_array(data, Movie)
+      handle_response(Movie, 'Media.getInfo', lang, hash, bytesize)
     end
 
     def get_person(id, lang = @default_lang)
-      data = self.class.get(method_url('Person.getInfo', lang, id)).parsed_response
-      Person.new(data.first, self)
+      handle_response(Person, 'Person.getInfo', lang, id).first
     end
     
     def get_genres(lang = @default_lang)
-      data = self.class.get(method_url('Genres.getList', lang)).parsed_response
-      data[1..-1].collect { |genre| Genre.new(genre) } # Skips the first, see spec/fixtures/genres_results.json
+      handle_response(Genre, 'Genres.getList', lang)[1..-1]
     end
     
     private
+    def handle_response klass, api_method, *args
+      # Custom sorting, etc to send to HTTParty
+      query_opts  = args.pop if args[-1].is_a?(Hash)
+
+      #Language, id, etc for URL construction
+      lang, *rest = args
+
+      url         = method_url(api_method, lang, rest)
+      data        = self.class.get(url, query_opts || {}).parsed_response
+
+      result_or_empty_array data, klass
+    end
 
     def result_or_empty_array(data, klass)
-      data = data.parsed_response
       if data.class != Array || data.first == "Nothing found."
         []
       else
@@ -83,6 +78,7 @@ module TMDBParty
 
     def method_url(method, lang, *args)
       url = [method, lang, self.class.format, @api_key]
+      args.flatten!
       url += args.collect{ |a| URI.escape(a.to_s) }
       '/' + url.join('/')
     end

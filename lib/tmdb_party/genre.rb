@@ -4,7 +4,7 @@ module TMDBParty
     attributes :id, :type => Integer
     attributes :name, :url
     
-    def initialize(values)
+    def initialize(values, klass=nil)
       self.attributes = values
     end
     
