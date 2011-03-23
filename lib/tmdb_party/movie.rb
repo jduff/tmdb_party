@@ -1,6 +1,5 @@
 module TMDBParty
-  class Movie
-    include Attributes
+  class Movie < Entity
     attr_reader :tmdb
     
     attributes :name, :overview, :id, :imdb_id, :movie_type, :url, :alternative_title, :translated, :certification
@@ -18,11 +17,6 @@ module TMDBParty
     attributes :studios, :lazy => :get_info!, :type => Studio
     
     alias_method :translated?, :translated
-    
-    def initialize(values, tmdb)
-      @tmdb = tmdb
-      self.attributes = values
-    end
     
     def get_info!
       movie = tmdb.get_info(self.id)
