@@ -4,7 +4,7 @@ $:.unshift lib unless $:.include?(lib)
 require 'bundler/setup'
 require 'httparty'
 
-%w[extras/httparty_icebox extras/attributes version entity video genre person image country studio cast_member movie extras/movie_hasher].each do |class_name|
+%w[extras/object_extensions extras/httparty_icebox extras/attributes version entity video genre person image country studio cast_member movie extras/movie_hasher].each do |class_name|
   require "tmdb_party/#{class_name}"
 end
 
