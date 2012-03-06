@@ -37,7 +37,7 @@ describe TMDBParty::Person do
     end
   
     it "should have a birthday" do
-      megan.birthday.should == Date.new(1986, 5, 16)
+      megan.birthday.should == Date.new(1986, 5, 16).to_s
     end
   
     describe "biography" do

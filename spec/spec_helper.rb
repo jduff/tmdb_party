@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'rspec'
 require 'fakeweb'
+require 'pry'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
