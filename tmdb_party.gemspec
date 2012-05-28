@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "tmdb_party"
 
-  s.add_dependency "httparty", ">= 0.8.1"
+  s.add_dependency "httparty", "~> 0.7.8"
   s.add_development_dependency "rake"
   s.add_development_dependency "fakeweb"
   s.add_development_dependency "rcov"
