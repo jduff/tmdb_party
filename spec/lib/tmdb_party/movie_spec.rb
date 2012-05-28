@@ -38,7 +38,7 @@ describe TMDBParty::Movie do
     end
     
     it "should have a release date" do
-      transformers_movie.released.should == Date.new(2007, 7, 4)
+      transformers_movie.released.should == Date.new(2007, 7, 4).to_s
     end
     
     it "should have a translated? attribute" do

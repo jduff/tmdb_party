@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + '/lib')
 require 'rake'
 require 'bundler/setup'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'yaml'
 require "rspec/core/rake_task"
 
